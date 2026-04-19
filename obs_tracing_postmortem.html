@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>분산 추적 및 사후 분석 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .content-section {
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .content-section h2 {
+            font-family: 'Outfit', sans-serif;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+            border-left: 4px solid var(--accent-cyan);
+            padding-left: 1rem;
+        }
+        .content-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+        .info-box {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--accent-purple);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html" class="active"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="observability.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 5</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Tracing & Post-mortem: 사후 분석 문화</h1>
+            <p class="page-subtitle">장애를 성장의 자양분으로 만드는 마지막 열쇠</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 분산 추적 (Distributed Tracing)</h2>
+            <p>
+                마이크로서비스 환경에서 사용자 요청 하나는 수많은 서버를 거쳐갑니다. 만약 결제가 실패했다면, 그 원인이 API 게이트웨이인지, 주문 서버인지, 결제 대행사인지 어떻게 알 수 있을까요? 
+                이때 사용하는 것이 **분산 추적**입니다. 
+                `Trace ID`라는 꼬리표를 요청에 붙여, 해당 요청이 어디서 얼마나 머물렀는지 시각화합니다.
+            </p>
+
+            <div class="info-box">
+                <h3 style="color: var(--accent-purple);">OpenTelemetry (OTel)</h3>
+                <p>최근에는 특정 벤더에 종속되지 않고 지표, 로그, 추적 데이터를 수집할 수 있는 **OpenTelemetry**가 글로벌 표준이 되었습니다. 이를 통해 언제든 모니터링 도구를 갈아탈 수 있는 유연함을 가질 수 있습니다.</p>
+            </div>
+
+            <h2>2. 비난 없는 사후 분석 (Blameless Post-mortem)</h2>
+            <p>
+                장애는 누군가의 실수가 아니라 **'시스템의 허점'** 때문에 발생합니다. 
+                누가 실수를 했는지 비난하기보다, "시스템이 어떻게 그 실수를 허용했는가?"를 분석하는 문서가 포스트모템입니다. 
+                *   **포함 내용:** 장애 타임라인, 근본 원인(Root Cause), 재발 방지 대책(Action Items).
+            </p>
+
+            <h2>3. 장애를 대하는 시각의 변화</h2>
+            <p>
+                "오늘 장애가 없었다"는 것이 항상 좋은 신호는 아닙니다. 
+                장애를 통해 시스템의 약점을 발견하고 이를 자동화로 보완하는 과정이 반복될 때, 비로소 **'진짜 강한 인프라'**가 완성됩니다. 
+                성공적인 사후 분석 보고서는 팀의 기술적 부채를 갚아나가는 기준표가 됩니다.
+            </p>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="obs_slo_alerting.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="container.html" class="btn btn-primary">다음 장으로 이동 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

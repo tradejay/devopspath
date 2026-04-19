@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보안 & 환경 분리 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html" class="active"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <span class="badge in-progress">STEP 06</span>
+            <h1 class="page-title" style="margin-top: 1rem;">보안 및 데이터 환경 격리</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">개발 중에 유저 데이터를 날리지 않기 위한 필수적 안전 장치 설계.</p>
+        </div>
+
+        <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
+            <!-- Main Details -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <ul class="task-list">
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>Dev / Stage / Prod 환경변수(.env) 분리</h4>
+                            <p>클라이언트 및 서버 측에서 프로세스 환경 변수를 감지해 개발용 DB와 운영용 DB로의 접속을 철저히 분리합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>비밀 키 저장소 사용 (Secret Management)</h4>
+                            <p>깃허브 저장소에 절대 API 키를 올리지 말고, GitHub Secrets나 AWS Parameter Store/Secrets Manager를 연동해 사용합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>Rate Limiting (경량 DDOS 방어)</h4>
+                            <p>Redis 메모리 캐시를 활용해 비정상적으로 많이 호출되는 악의적인 API 요청 횟수를 제한합니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Side Refs -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
+                <div class="tech-grid" style="margin-bottom: 2rem;">
+                    <span class="tech-tag">GitHub Secrets</span>
+                    <span class="tech-tag">AWS Secrets Manager</span>
+                    <span class="tech-tag">Redis Rate Limiter</span>
+                </div>
+
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <div class="resource-list">
+                    <a href="https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-lock" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">GitHub Secrets</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">환경변수 안전 관리</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

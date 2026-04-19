@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 자동화 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html" class="active"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <span class="badge todo">STEP 05 (Requested)</span>
+            <h1 class="page-title" style="margin-top: 1rem;">마케팅 & 백데이터 연동 블로그 배포 자동화</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">서비스 운영 데이터, 주간 통계를 마케팅 블로그 포스트로 변환해 자동 발간하는 파이프라인.</p>
+        </div>
+
+        <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
+            <!-- Main Details -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <ul class="task-list">
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>데이터 추출 스크립트 작성 (Python/Node.js)</h4>
+                            <p>Firebase 등 DB에서 지난 일주일 통계 데이터를 추출하여 마크다운(.md) 파일 형태의 텍스트로 가공합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>마크다운 파일(Markdown) GitHub 레포지토리 Commit</h4>
+                            <p>스크립트 실행 결과물(.md)을 블로그 소스코드가 있는 저장소의 _posts/ 디렉토리에 Push하는 로직을 작성합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>GitHub Action Cron 스케줄링</h4>
+                            <p>매주 월요일 아침 9시마다 추출 스크립트가 돌아가도록 GitHub Action 스케줄(Cron) 이벤트를 설정합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>Next.js Vercel 연동으로 SSG 구현</h4>
+                            <p>Vercel은 포스트가 커밋되면 자동으로 감지해 빌드하므로, Next.js의 정적 생성(Static Site Generation)을 활용하여 빠른 로딩 속도를 달성합니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Side Refs -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
+                <div class="tech-grid" style="margin-bottom: 2rem;">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">Vercel</span>
+                    <span class="tech-tag">GitHub Actions cron</span>
+                    <span class="tech-tag">Markdown/MDX</span>
+                </div>
+
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <div class="resource-list">
+                    <a href="https://nextjs.org/learn/basics/data-fetching/blog-data" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-n" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">Next.js 블로그 만들기</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">공식 튜토리얼 SSG 기초</span>
+                        </div>
+                    </a>
+                    <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule" target="_blank" class="resource-item">
+                        <i class="fa-regular fa-clock" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">GitHub Actions Schedule</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">스케줄링 문법 (Cron)</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

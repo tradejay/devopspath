@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD 자동화 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html" class="active"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <span class="badge in-progress">STEP 01</span>
+            <h1 class="page-title" style="margin-top: 1rem;">CI/CD (지속적 통합/배포) 고도화</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">Vercel의 기본 연결을 넘어, 테스트와 검증을 강제하는 엔터프라이즈 환경 구축하기.</p>
+        </div>
+
+        <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
+            <!-- Main Details -->
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-purple);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-microchip"></i> 파이프라인 설계 원칙 (Pro's Review)</h2>
+                <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
+                    <p>단순히 소스 코드를 서버에 올리는 것은 배포(Deployment)가 아니라 **'전송'**에 가깝습니다. 전문적인 데브옵스 환경은 Vercel이 기본으로 제공하는 '자동 배포' 그 이상의 엄격함을 요구합니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 **"어떤 상황에서도 배포가 시스템 장애를 일으키지 않게 할 것"**이라는 대원칙 아래, 다음 세 가지 핵심 가치를 실습함으로 엔터프라이즈 레벨의 안정성을 구축합니다.</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem; list-style-type: square;">
+                        <li><strong>빠른 피드백 (Fast Feedback):</strong> 오류는 발생한 시점에서 가장 가까운 시각에 발견되어야 합니다.</li>
+                        <li><strong>반복 가능성 (Repeatability):</strong> 어떤 환경에서도 동일한 빌드 아티팩트가 동일한 결과를 내야 합니다.</li>
+                        <li><strong>리스크 격리 (Risk Insulation):</strong> DB 마이그레이션이나 고급 배포 기법으로 장애의 Blast Radius를 최소화합니다.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">5단계 전문 학습 로드맵</h2>
+                <ul class="task-list">
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="cicd_github_actions.html" style="color: inherit; text-decoration: none;">1. Foundations: 형상 관리 및 빌드 자동화</a></h4>
+                            <p>모든 자산의 코드화(Version Control)와 효과적인 브랜칭 전략(Trunk-based)을 통해 개발 안정성의 기반을 다집니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="cicd_github_actions.html" style="color: inherit; text-decoration: none;">2. CI (Continuous Integration): 빠른 피드백 루프</a></h4>
+                            <p>커밋 단계(Commit Stage)에서 자동으로 빌드하고 린트를 수행하여 코드 품질에 대한 즉각적인 피드백을 받습니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="cicd_testing.html" style="color: inherit; text-decoration: none;">3. Testing Strategy: 테스트 피라미드와 수락 테스트</a></h4>
+                            <p>단위 테스트를 넘어 서비스의 비즈니스 가치를 검증하는 자동화된 수락 테스트(Acceptance Test) 전략을 수립합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="cicd_pipeline_design.html" style="color: inherit; text-decoration: none;">4. Deployment Pipeline: 배포 파이프라인 설계</a></h4>
+                            <p>배포의 전 과정을 시각화하고 스테이지별 승인 절차를 포함한 '배포 파이프라인'을 아키텍처 관점에서 설계합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="cicd_deployment_strategies.html" style="color: inherit; text-decoration: none;">5. Advanced Delivery: 고급 배포 기법과 리스크 관리</a></h4>
+                            <p>Blue-Green, Canary 배포와 같은 무중단 배포 기법과 DB 마이그레이션 자동화로 운영 리스크를 최소화합니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Side Refs -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
+                <div class="tech-grid" style="margin-bottom: 2rem;">
+                    <span class="tech-tag">GitHub Actions</span>
+                    <span class="tech-tag">Jenkins</span>
+                    <span class="tech-tag">Jest/Vitest</span>
+                    <span class="tech-tag">YAML</span>
+                </div>
+
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <div class="resource-list">
+                    <a href="https://docs.github.com/en/actions" target="_blank" class="resource-item">
+                        <i class="fa-brands fa-github" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">GitHub Actions 기초</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">공식 문서 활용 가이드</span>
+                        </div>
+                    </a>
+                    <a href="https://www.jenkins.io/doc/" target="_blank" class="resource-item">
+                        <i class="fa-brands fa-jenkins" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">Jenkins 튜토리얼</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">설치 및 파이프라인 구축</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

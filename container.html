@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컨테이너화 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <span class="badge in-progress">STEP 03</span>
+            <h1 class="page-title" style="margin-top: 1rem;">백엔드 컨테이너화 (Docker)</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">"내 컴퓨터에서는 되는데?" 문제를 해결하고 Scale-out이 안되는 환경에서 탈피하기.</p>
+        </div>
+
+        <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
+            <!-- Main Details -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <ul class="task-list">
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>Dockerfile 작성하기</h4>
+                            <p>Node.js나 Python 서버의 실행 환경 명세서를 Dockerfile로 작성해 이미지를 만듭니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>로컬에서 docker-compose 실행</h4>
+                            <p>웹 서버뿐 아니라 포스트그레스(PostgreSQL)나 레디스(Redis) 같은 DB를 컨테이너로 한 번에 띄워서 테스트하는 Compose 파일을 만듭니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>컨테이너 환경(AWS EC2) 등에서 실행</h4>
+                            <p>개발된 이미지를 Docker Hub나 ECR에 올려두고, 실제 운영 서버에서 Pull하여 Daemon 모드로 실행해봅니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Side Refs -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
+                <div class="tech-grid" style="margin-bottom: 2rem;">
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Docker Compose</span>
+                    <span class="tech-tag">AWS EC2/ECS</span>
+                    <span class="tech-tag">Linux</span>
+                </div>
+
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <div class="resource-list">
+                    <a href="https://docs.docker.com/get-started/" target="_blank" class="resource-item">
+                        <i class="fa-brands fa-docker" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">Docker 시작하기</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">공식 Getting Started</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

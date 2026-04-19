@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IaC (코드형 인프라) - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html" class="active"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <span class="badge todo">STEP 04</span>
+            <h1 class="page-title" style="margin-top: 1rem;">인프라 코드 관리 (IaC)</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">개발을 위한 AWS 콘솔의 수동 프로비저닝을 벗어나 선언형 아키텍처로 진화하기.</p>
+        </div>
+
+        <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
+            <!-- Main Details -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <ul class="task-list">
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>Terraform CLI 설치 및 AWS 연동</h4>
+                            <p>AWS IAM 사용자를 생성하고, Terraform을 활용해서 AWS Provider를 설정 및 인증합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>간단한 S3 버킷 및 보안그룹 생성</h4>
+                            <p>콘솔 접속 없이 설정 파일(.tf)만을 이용해 클라우드에 S3와 방화벽 설정(Security Group)을 띄워봅니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4>Terraform State 원격 관리 (심화)</h4>
+                            <p>로컬에 저장되는 tfstate 파일을 AWS S3 백엔드로 옮겨 여러 개발자가 인프라를 협업할 수 있도록 구성합니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Side Refs -->
+            <div class="glass-card">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
+                <div class="tech-grid" style="margin-bottom: 2rem;">
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">AWS IAM</span>
+                    <span class="tech-tag">AWS S3 / VPC</span>
+                </div>
+
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <div class="resource-list">
+                    <a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-code" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <strong style="display:block; font-size: 0.9rem;">Terraform 시작하기</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">HashiCorp AWS 튜토리얼</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
