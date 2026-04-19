@@ -32,35 +32,50 @@
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
             <!-- Main Details -->
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-cyan);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-robot"></i> 마케팅 자동화 설계 원칙 (Pro's Review)</h2>
+                <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
+                    <p>마케팅 블로그나 랜딩 페이지는 **'속도'**와 **'자율성'**이 생명입니다. 개발자가 매번 배포해 주기를 기다리는 것이 아니라, 마케터가 글을 쓰는 즉시 자동으로 전 세계에 배포되는 아키텍처가 필요합니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 현대적인 **Jamstack** 아키텍처를 기반으로 정적 사이트 생성기(SSG)와 Headless CMS를 연결하는 법을 배웁니다. 핵심은 콘텐츠의 수정이 기술적 개입 없이 빌드 파이프라인과 완벽하게 연결되는 자동화Flow를 완성하는 데 있습니다.</p>
+                </div>
+            </div>
+
             <div class="glass-card">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">5단계 전문 학습 로드맵</h2>
                 <ul class="task-list">
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>데이터 추출 스크립트 작성 (Python/Node.js)</h4>
-                            <p>Firebase 등 DB에서 지난 일주일 통계 데이터를 추출하여 마크다운(.md) 파일 형태의 텍스트로 가공합니다.</p>
+                            <h4><a href="auto_ssg.html" style="color: inherit; text-decoration: none;">1. SSG Selection: 기술 스택 선정</a></h4>
+                            <p>성능과 SEO에 최적화된 정적 사이트 생성기(Astro, Next.js, Hugo)의 특징을 이해하고 목표에 맞는 도구를 선택합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>마크다운 파일(Markdown) GitHub 레포지토리 Commit</h4>
-                            <p>스크립트 실행 결과물(.md)을 블로그 소스코드가 있는 저장소의 _posts/ 디렉토리에 Push하는 로직을 작성합니다.</p>
+                            <h4><a href="auto_cms.html" style="color: inherit; text-decoration: none;">2. Headless CMS: 콘텐츠 관리</a></h4>
+                            <p>Contentful, Ghost 등 DB 없이 API로 콘텐츠를 관리하는 Headless CMS를 연동하여 기획자와 개발자를 분리합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>GitHub Action Cron 스케줄링</h4>
-                            <p>매주 월요일 아침 9시마다 추출 스크립트가 돌아가도록 GitHub Action 스케줄(Cron) 이벤트를 설정합니다.</p>
+                            <h4><a href="auto_webhooks.html" style="color: inherit; text-decoration: none;">3. Webhooks & Triggers: 이벤트 기반 빌드</a></h4>
+                            <p>CMS에서 글이 발행되는 즉시 배포 파이프라인을 트리거하여 실시간으로 정적 페이지를 재생성하는 Flow를 구축합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>Next.js Vercel 연동으로 SSG 구현</h4>
-                            <p>Vercel은 포스트가 커밋되면 자동으로 감지해 빌드하므로, Next.js의 정적 생성(Static Site Generation)을 활용하여 빠른 로딩 속도를 달성합니다.</p>
+                            <h4><a href="auto_scheduling.html" style="color: inherit; text-decoration: none;">4. Scheduled Updates: 자동 수집 및 업데이트</a></h4>
+                            <p>GitHub Actions의 Cron 기능을 활용하여 정기적으로 외부 데이터를 수집하고 블로그 지표를 자동 업데이트합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="auto_cdn.html" style="color: inherit; text-decoration: none;">5. Global Delivery: CDN & Edge</a></h4>
+                            <p>전 세계 사용자에게 0.1초 만에 응답하기 위한 CDN 캐싱 전략과 Edge Functions 활용법을 실습합니다.</p>
                         </div>
                     </li>
                 </ul>

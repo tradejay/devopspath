@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책 소스화 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .content-section {
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .content-section h2 {
+            font-family: 'Outfit', sans-serif;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-red);
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1rem;
+        }
+        .content-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+        .code-block {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            border: 1px solid var(--border-light);
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+            color: #c9d1d9;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html" class="active"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html" class="active"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html" class="active"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="security.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 4</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Policy as Code: 규범 자동화</h1>
+            <p class="page-subtitle">보안 규정을 코드로 작성하고 시스템이 검사하게 만드는 법</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. Policy as Code (PaC)란?</h2>
+            <p>
+                조직의 보안 가이드라인(예: "모든 S3 버킷은 공용 접근이 금지되어야 한다")을 문서가 아닌 **코드**로 작성하는 것입니다. 
+                사람이 검사하면 빠뜨릴 수 있지만, 코드로 작성하여 CI/CD 파이프라인에 넣어두면 기계가 한 번도 빠짐없이 검사합니다.
+            </p>
+
+            <h2>2. 핵심 도구: OPA (Open Policy Agent)</h2>
+            <p>
+                OPA는 클라우드뿐 아니라 쿠버네티스, API 테스팅 등 전 분야에서 정책을 검사할 수 있는 표준 도구입니다. **Rego**라는 전용 언어를 사용합니다.
+            </p>
+
+            <div class="code-block">
+                <pre><code># Rego 예시: S3 버킷의 퍼블릭 액세스 금지
+deny[msg] {
+    input.resource_type == "aws_s3_bucket"
+    input.public_access_block == false
+    msg = "S3 버킷은 반드시 퍼블릭 액세스가 차단되어야 합니다!"
+}</code></pre>
+            </div>
+
+            <h2>3. 인프라 배포 전 가드레일 (Guardrails)</h2>
+            <p>
+                테라폼 코드(`plan`)가 생성되면, 배포하기 전에 OPA가 이 결과를 훑어봅니다. 
+                만약 정책을 위반한 내용이 있다면 배포 버튼 자체가 비활성화되도록 설계하는 것이 성숙한 DevSecOps의 핵심입니다.
+            </p>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="sec_secrets.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="sec_incident.html" class="btn btn-primary">다음 단계: 5. Incident Response <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

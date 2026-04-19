@@ -32,28 +32,50 @@
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
             <!-- Main Details -->
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-purple);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-cubes"></i> 인프라 설계 원칙 (Pro's Review)</h2>
+                <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
+                    <p>전통적인 운영 방식이 관리 콘솔(AWS Console 등)에서 버튼을 눌러 서버를 생성하는 것이라면, **IaC**는 인프라를 하나의 **'소프트웨어 프로젝트'**로 취급하는 것입니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 Terraform을 통해 인프라를 코드로 정의하고 버전 관리하는 법을 배웁니다. 핵심은 단순히 코드를 짜는 것이 아니라, 인프라의 상태(State)를 안전하게 관리하고 재사용 가능한 모듈로 추상화하는 설계 능력을 갖추는 데 있습니다.</p>
+                </div>
+            </div>
+
             <div class="glass-card">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">5단계 전문 학습 로드맵</h2>
                 <ul class="task-list">
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>Terraform CLI 설치 및 AWS 연동</h4>
-                            <p>AWS IAM 사용자를 생성하고, Terraform을 활용해서 AWS Provider를 설정 및 인증합니다.</p>
+                            <h4><a href="iac_foundations.html" style="color: inherit; text-decoration: none;">1. Foundations: 왜 IaC인가?</a></h4>
+                            <p>선언적(Declarative) 코드와 불변 인프라의 철학을 배우고 Terraform의 기본 동작 원리를 이해합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>간단한 S3 버킷 및 보안그룹 생성</h4>
-                            <p>콘솔 접속 없이 설정 파일(.tf)만을 이용해 클라우드에 S3와 방화벽 설정(Security Group)을 띄워봅니다.</p>
+                            <h4><a href="iac_state.html" style="color: inherit; text-decoration: none;">2. State Management: 상태 관리 전략</a></h4>
+                            <p>가장 중요한 `.tfstate` 파일의 역할을 배우고 원격 백엔드와 잠금(Locking) 설정을 실습합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>Terraform State 원격 관리 (심화)</h4>
-                            <p>로컬에 저장되는 tfstate 파일을 AWS S3 백엔드로 옮겨 여러 개발자가 인프라를 협업할 수 있도록 구성합니다.</p>
+                            <h4><a href="iac_modules.html" style="color: inherit; text-decoration: none;">3. Modules & DRY: 인프라 모듈화</a></h4>
+                            <p>재사용 가능한 모듈 설계법을 배우고 코드 중복을 최소화하는 인프라 아키텍처를 설계합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="iac_pipelines.html" style="color: inherit; text-decoration: none;">4. Infrastructure Pipeline: 인프라 CI/CD</a></h4>
+                            <p>코드 리뷰 후 자동으로 인프라가 배포(Plan/Apply)되는 자동화 파이프라인을 구축합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="iac_drift.html" style="color: inherit; text-decoration: none;">5. Governance & Drift: 보안 가드레일</a></h4>
+                            <p>인프라 변경 감지(Drift Detection)와 Policy as Code를 이용해 보안 정책을 자동으로 강제합니다.</p>
                         </div>
                     </li>
                 </ul>

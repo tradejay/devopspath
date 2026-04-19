@@ -32,28 +32,50 @@
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
             <!-- Main Details -->
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-red);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-shield-halved"></i> 보안 설계 원칙 (Pro's Review)</h2>
+                <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
+                    <p>데브옵스에서의 보안은 마지막 단계에 수행하는 '검사'가 아니라, 첫 줄의 코드를 짤 때부터 함께하는 **'문화'**여야 합니다. 이를 **DevSecOps**라고 부릅니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 보안 취약점을 자동으로 찾아내고, 개발/검증/운영 환경을 물리적으로 완벽하게 격리하며, 시크릿 정보를 안전하게 관리하는 법을 배웁니다. 최고의 보안은 '막는 것'이 아니라 보안 사고가 나더라도 피해가 확산되지 않는 **격리된 아키텍처**를 설계하는 데 있습니다.</p>
+                </div>
+            </div>
+
             <div class="glass-card">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;">해야 할 것들 (To-Do)</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem;">5단계 전문 학습 로드맵</h2>
                 <ul class="task-list">
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>Dev / Stage / Prod 환경변수(.env) 분리</h4>
-                            <p>클라이언트 및 서버 측에서 프로세스 환경 변수를 감지해 개발용 DB와 운영용 DB로의 접속을 철저히 분리합니다.</p>
+                            <h4><a href="sec_shift_left.html" style="color: inherit; text-decoration: none;">1. Shift-Left Security: 조기 보안 진단</a></h4>
+                            <p>코드를 짜는 즉시 취약점을 스캔하는 SAST/SCA 도구를 파이프라인에 통합하여 보안 이슈를 미리 제거합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>비밀 키 저장소 사용 (Secret Management)</h4>
-                            <p>깃허브 저장소에 절대 API 키를 올리지 말고, GitHub Secrets나 AWS Parameter Store/Secrets Manager를 연동해 사용합니다.</p>
+                            <h4><a href="sec_isolation.html" style="color: inherit; text-decoration: none;">2. Environment Isolation: 물리적 격리</a></h4>
+                            <p>클라우드 계정과 네트워크 레벨에서 개발(Dev)과 운영(Prod) 환경을 완벽하게 분리하여 "실수로 운영 DB를 삭제하는 일"을 방지합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4>Rate Limiting (경량 DDOS 방어)</h4>
-                            <p>Redis 메모리 캐시를 활용해 비정상적으로 많이 호출되는 악의적인 API 요청 횟수를 제한합니다.</p>
+                            <h4><a href="sec_secrets.html" style="color: inherit; text-decoration: none;">3. Secrets Management: 시크릿 관리</a></h4>
+                            <p>.env 파일을 넘어 HashiCorp Vault나 AWS Secrets Manager를 사용해 인증 정보를 안전하게 보관하고 주입합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="sec_policy_code.html" style="color: inherit; text-decoration: none;">4. Policy as Code: 규범 준수 자동화</a></h4>
+                            <p>조직의 보안 규정을 코드로 정의하고(Checkov, OPA), 이를 위반한 인프라는 배포되지 못하도록 강제합니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-checkbox"></div>
+                        <div class="task-content">
+                            <h4><a href="sec_incident.html" style="color: inherit; text-decoration: none;">5. Incident Response: 탐지와 대응</a></h4>
+                            <p>런타임에 일어나는 이상 행위를 감지하고, 장애나 보안 사고 발생 시 빠르게 대응할 수 있는 추적 체계를 구축합니다.</p>
                         </div>
                     </li>
                 </ul>

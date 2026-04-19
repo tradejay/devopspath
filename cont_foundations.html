@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM vs Container - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .content-section {
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .content-section h2 {
+            font-family: 'Outfit', sans-serif;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 1rem;
+        }
+        .content-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="container.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 1</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Foundations: VM vs Container</h1>
+            <p class="page-subtitle">격리의 수준과 하이퍼바이저와 도커 엔진의 차이</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 가상머신(VM)의 한계</h2>
+            <p>
+                전통적인 가상머신은 하드웨어 위에 하이퍼바이저를 올리고, 그 위에 **게스트 OS**를 통째로 설치합니다. 
+                이 방식은 격리 수준은 높지만, 부팅 속도가 느리고 수 기가바이트의 메모리를 기본으로 점유한다는 단점이 있습니다.
+            </p>
+
+            <div class="info-box">
+                <h3 style="color: var(--accent-blue);">컨테이너의 핵심: 커널 공유</h3>
+                <p>컨테이너는 호스트 OS의 커널(Kernel)을 공유하며, 프로세스 레벨에서 필요한 라이브러리만 격리하여 실행합니다. 덕분에 매우 가볍고(MB 단위), 1초 안에 실행될 수 있습니다.</p>
+            </div>
+
+            <h2>2. Docker 엔진의 구조</h2>
+            <p>도커는 다음과 같은 구성 요소로 움직입니다.</p>
+            <ul>
+                <li><strong>Docker Client:</strong> 사용자가 명령을 내리는 인터페이스 (CLI).</li>
+                <li><strong>Docker Host (Daemon):</strong> 컨테이너를 빌드하고 실행하는 실제 엔진.</li>
+                <li><strong>Registry:</strong> 만들어진 이미지를 저장하고 배포하는 저장소 (Docker Hub).</li>
+            </ul>
+
+            <h2>3. 실습 가이드</h2>
+            <p>터미널에서 <code>docker info</code> 명령어를 쳐보세요. 현재 본인의 컴퓨터에서 돌아가는 도커 엔진이 어떤 커널 정보를 사용하는지 확인할 수 있습니다.</p>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <span></span>
+            <a href="cont_images.html" class="btn btn-primary">다음 단계: 2. Build Optimization <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>
