@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모니터링 & 로깅 - DevOps Roadmap</title>
+    <title>모니터링 & 로깅 (Observability) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,7 +14,6 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
-            
             <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html" class="active"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
@@ -22,7 +21,6 @@
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
-
             <li class="nav-category">심화 과정 (Step 07-13)</li>
             <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
             <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
@@ -36,18 +34,17 @@
 
     <main class="main-content">
         <div class="detail-header">
-            <span class="badge todo">STEP 02</span>
+            <span class="badge in-progress">STEP 02</span>
             <h1 class="page-title" style="margin-top: 1rem;">모니터링 & 로깅 (Observability)</h1>
-            <p class="page-subtitle" style="margin-bottom: 0;">개발자가 장애를 먼저 파악하고 빠르게 대응할 수 있게 만들어주는 인프라의 눈.</p>
+            <p class="page-subtitle" style="margin-bottom: 0;">시스템 내부에서 일어나는 일을 숫자로 읽고, 장애를 눈으로 확인하기.</p>
         </div>
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-            <!-- Main Details -->
-            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-cyan);">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-eye"></i> 관측 가능성 설계 원칙 (Pro's Review)</h2>
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-blue);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-eye"></i> 모니터링을 넘어 관측성(Observability)으로</h2>
                 <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
-                    <p>전통적인 모니터링이 "시스템이 살았는가 죽었는가?"라는 질문에 답한다면, **관측 가능성(Observability)**은 **"왜 시스템이 이렇게 동작하고 있는가?"**라는 질문에 답하는 능력입니다.</p>
-                    <p style="margin-top: 1rem;">엔지니어링의 정점은 장애를 운 좋게 피하는 것이 아니라, 수만 개의 복잡한 요청 속에서 장애의 근본 원인을 단 몇 분 만에 찾아낼 수 있는 **'투명한 가시성'**을 확보하는 데 있습니다. 이를 위해 3대 기둥(메트릭, 로그, 추적)을 체계적으로 연결하는 법을 배웁니다.</p>
+                    <p>기존의 모니터링이 "내 서버가 죽었는가?"라는 질문에 답한다면, 관측성은 **"왜 내 서버가 느려졌는가?"**라는 질문에 답할 수 있어야 합니다. 시스템 내부의 상태를 지표(Metrics), 기록(Logs), 추적(Traces)을 통해 투명하게 들여다보는 과정입니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 Prometheus와 Grafana를 중심으로 현대적인 모니터링 스택을 구축하고, 장애를 사전에 탐지하는 전략을 학습합니다.</p>
                 </div>
             </div>
 
@@ -57,58 +54,57 @@
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_fundamentals.html" style="color: inherit; text-decoration: none;">1. Foundations: 관측 가능성 기초</a></h4>
-                            <p>모니터링을 넘어선 관측 가능성(Observability)의 철학과 Metrics, Logs, Traces의 상호작용을 이해합니다.</p>
+                            <h4><a href="obs_fundamentals.html" style="color: inherit; text-decoration: none;">1. 관측성의 3요소 (M.L.T)</a></h4>
+                            <p>Metrics, Logs, Traces의 보완 관계를 이해하고 현대적 관측성 아키텍처를 설계합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_metrics_golden.html" style="color: inherit; text-decoration: none;">2. Telemetry & Metrics: 골든 시그널</a></h4>
-                            <p>SRE의 핵심 지표인 4대 골든 시그널을 수집하고 Prometheus/Grafana로 시각화하는 법을 익힙니다.</p>
+                            <h4><a href="obs_metrics_golden.html" style="color: inherit; text-decoration: none;">2. Metrics & Prometheus</a></h4>
+                            <p>시계열 데이터의 개념과 4가지 황금 신호(Golden Signals)를 측정하는 법을 배웁니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_logging_correlation.html" style="color: inherit; text-decoration: none;">3. Logging & Events: 구조화 로깅</a></h4>
-                            <p>JSON 기반의 구조화된 로깅을 도입하고, 로그와 메트릭을 Trace ID로 연결하는 상관관계 분석을 배웁니다.</p>
+                            <h4><a href="obs_logging_correlation.html" style="color: inherit; text-decoration: none;">3. Logging & Correlation</a></h4>
+                            <p>분산된 로그를 하나로 모으고(Loki), 지표와 로그를 연결하여 추적하는 법을 익힙니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_slo_alerting.html" style="color: inherit; text-decoration: none;">4. Reliability & Alerting: SLO 기반 알림</a></h4>
-                            <p>단순 CPU 수치가 아닌, 사용자 경험(SLO)과 에러 예산을 기반으로 한 지능형 알림 시스템을 설계합니다.</p>
+                            <h4><a href="obs_tracing_postmortem.html" style="color: inherit; text-decoration: none;">4. Distributed Tracing</a></h4>
+                            <p>OpenTelemetry와 Jaeger를 사용하여 서비스 간 요청 흐름을 시각화합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_tracing_postmortem.html" style="color: inherit; text-decoration: none;">5. Tracing & Post-mortem: 사후 분석 문화</a></h4>
-                            <p>마이크로서비스 전체 흐름을 추적하는 분산 추적(Tracing)과 생산적인 장애 사후 분석(Post-mortem) 기획을 다룹니다.</p>
+                            <h4><a href="obs_slo_alerting.html" style="color: inherit; text-decoration: none;">5. SLO & Alerting Policy</a></h4>
+                            <p>남발되는 알람이 아닌, 의미 있는 '에러 예산' 기반의 알람 정책을 수립합니다.</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Side Refs -->
             <div class="glass-card">
                 <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
                 <div class="tech-grid" style="margin-bottom: 2rem;">
-                    <span class="tech-tag">Sentry</span>
-                    <span class="tech-tag">Datadog</span>
                     <span class="tech-tag">Prometheus</span>
                     <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Loki</span>
+                    <span class="tech-tag">Tempo</span>
                 </div>
 
-                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">핵심 가이드</h2>
                 <div class="resource-list">
-                    <a href="https://docs.sentry.io/" target="_blank" class="resource-item">
-                        <i class="fa-solid fa-bug" style="font-size: 1.5rem;"></i>
+                    <a href="https://prometheus.io/" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-chart-area" style="font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="display:block; font-size: 0.9rem;">Sentry 공식 문서</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">프론트/백엔드 연동법</span>
+                            <strong style="display:block; font-size: 0.9rem;">Prometheus Documentation</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">강력한 쿼리 언어(PromQL) 학습</span>
                         </div>
                     </a>
                 </div>

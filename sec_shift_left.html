@@ -3,35 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shift-Left 보안 - DevOps Roadmap</title>
+    <title>Shift-Left Security - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-red);
-            border-left: 4px solid var(--accent-red);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .info-box {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid var(--accent-red);
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -40,51 +14,74 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
-            <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
-            <li><a href="iac.html" class="active"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
-            <li><a href="automation.html" class="active"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html" class="active"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="security.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 보안 목록으로 돌아가기
             </a>
             <span class="badge progress">Deep Dive 1</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Shift-Left Security: 조기 보안 진단</h1>
-            <p class="page-subtitle">보안 전문가가 아닌 개발자가 코드를 짤 때 보안을 챙기는 법</p>
+            <h1 class="page-title" style="margin-top: 1rem;">Shift-Left Security</h1>
+            <p class="page-subtitle">보안 사고의 비용을 줄이기 위해 보안 검사를 개발 초기 단계로 당기기</p>
         </div>
 
         <section class="content-section">
-            <h2>1. Shift-Left란?</h2>
-            <p>
-                전통적으로 보안은 배포 직전에 외부 업체가 '검사'하는 마지막 단계였습니다. 
-                하지만 이때 문제가 발견되면 코드를 갈아엎어야 하므로 비용이 막대합니다. 
-                **Shift-Left**는 보안 활동을 개발 초기 단계(왼쪽)로 끌어오는 것을 의미합니다.
-            </p>
-
-            <div class="info-box">
-                <h3 style="color: var(--accent-red);">핵심 도구: SAST & SCA</h3>
+            <h2>1. Shift-Left 철학의 이해</h2>
+            <p>소프트웨어 생명 주기(SDLC)에서 보안 사고를 발견하는 시점이 늦어질수록 복구 비용은 기하급수적으로 늘어납니다. **Shift-Left**는 보안 검사를 운영 단계가 아닌 개발자의 컴퓨터, 혹은 CI 단계에서 수행하는 것을 의미합니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>무엇을 당겨야 하는가?</h3>
                 <ul>
-                    <li><strong>SAST (Static Analysis):</strong> 소스 코드 자체를 분석해 하드코딩된 비밀번호나 취약한 로직을 찾습니다. (SonarQube, Snyk)</li>
-                    <li><strong>SCA (Composition Analysis):</strong> 우리가 사용하는 오픈소스 라이브러리에 알려진 취약점(CVE)이 있는지 검사합니다. (GitHub Dependabot)</li>
+                    <li><strong>코드 리뷰:</strong> 동료의 코드를 볼 때 보안 관점에서도 검토합니다.</li>
+                    <li><strong>자동 스캔 (SAST):</strong> 소스 코드의 보안 약점을 IDE나 CI에서 즉시 발견합니다.</li>
+                    <li><strong>종속성 검사 (SCA):</strong> 사용 중인 라이브러리에 취약점이 있는지 실시간으로 체크합니다.</li>
                 </ul>
             </div>
 
-            <h2>2. 파이프라인 통합</h2>
-            <p>
-                가장 좋은 방법은 Git에 Push할 때마다 자동으로 보안 스캔이 돌아가게 하는 것입니다. 
-                "심각한 보안 취약점이 발견되면 빌드를 실패시킨다"는 규칙을 세우면, 보안이 담보되지 않은 코드는 절대 서버에 올라갈 수 없게 됩니다.
-            </p>
+            <h2>2. 실무 적용 시나리오</h2>
+            <p>보안은 개발자의 업무를 '방해'하는 것이 아니라 '도와주는' 과정이어야 합니다.</p>
+            <ul>
+                <li><strong>Pre-commit Hook:</strong> `git commit`을 하기 전에 로컬에서 기본적인 보안 검사를 실행합니다.</li>
+                <li><strong>PR Comments:</strong> GitHub PR 마다 취약점 발견 여부를 댓글로 남겨 즉각적인 수정을 유도합니다.</li>
+                <li><strong>Gatekeeper:</strong> 심각한 취약점이 발견되면 합병(Merge)이나 배포를 자동으로 차단합니다.</li>
+            </ul>
+
+            <div class="code-block">
+                <pre><code># Snyk을 이용한 종속성 취약점 스캔 예시
+- name: Snyk Security Scan
+  uses: snyk/actions/node@master
+  env:
+    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  with:
+    args: --severity-threshold=high # 높은 위험도만 빌드 실패 처리</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>전문가의 팁: "고통은 나누고 책임은 명확히"</h3>
+                <p>보안 팀이 나중에 한꺼번에 "안된다"고 말하는 대신, 개발자가 코드를 쓰는 순간에 "이 라이브러리는 위험합니다"라는 경고를 볼 수 있게 하세요. 이것이 바로 DevSecOps의 핵심입니다.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <span></span>
-            <a href="sec_isolation.html" class="btn btn-primary">다음 단계: 2. Environment Isolation <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="sec_secrets.html" class="btn btn-primary">다음 단계: 2. 비밀 정보 관리 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

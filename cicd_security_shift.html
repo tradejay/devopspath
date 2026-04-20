@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Strategy - DevOps Roadmap</title>
+    <title>DevSecOps (Shift-Left) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -37,49 +37,50 @@
             <a href="cicd.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
                 <i class="fa-solid fa-arrow-left"></i> CI/CD 목록으로 돌아가기
             </a>
-            <span class="badge progress">Deep Dive 2</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Testing Strategy (테스트 전략)</h1>
-            <p class="page-subtitle">자동화된 신뢰를 쌓는 테스트 피라미드 설계</p>
+            <span class="badge progress">Deep Dive 5</span>
+            <h1 class="page-title" style="margin-top: 1rem;">DevSecOps (Shift-Left)</h1>
+            <p class="page-subtitle">보안을 배포의 마지막 단계가 아닌, 개발의 시작 단계로 옮기기</p>
         </div>
 
         <section class="content-section">
-            <h2>1. 테스트 피라미드 (Testing Pyramid)</h2>
-            <p>모든 테스트가 동일한 비중을 가져서는 안 됩니다. 효율적인 피드백을 위해 피라미드 구조를 유지해야 합니다.</p>
-            <ul>
-                <li><strong>Unit Tests (바닥):</strong> 개별 함수/함수 단위 검증. 빠르고 많아야 함.</li>
-                <li><strong>Integration Tests (중간):</strong> 모듈 간 통신(DB, API) 검증.</li>
-                <li><strong>E2E Tests (꼭대기):</strong> 사용자 시나리오 기반 전체 흐름 검증. 느리고 비용이 높으므로 핵심 경로만 수행.</li>
-            </ul>
-
+            <h2>1. Shift-Left Security란?</h2>
+            <p>전통적인 방식에서는 배포 직전 혹은 배포 후에 보안 검사를 수행했습니다. 하지만 **Shift-Left**는 개발자가 코드를 작성하는 시점부터 보안 검사를 자동화하여 비용과 리스크를 획기적으로 줄이는 전략입니다.</p>
+            
             <div class="info-box cyan">
-                <h3>TDD (Test-Driven Development)</h3>
-                <p>코드를 짜기 전 테스트를 먼저 작성하면, 자연스럽게 '테스트 가능한 코드'가 만들어집니다. 이는 나중에 리팩토링이나 기능 추가 시 거대한 안전망이 됩니다.</p>
+                <h3>SAST vs DAST</h3>
+                <ul>
+                    <li><strong>SAST (Static Analysis):</strong> 소스 코드를 분석하여 보안 취약점 탐지. (Sonarqube 등)</li>
+                    <li><strong>DAST (Dynamic Analysis):</strong> 실제 실행 중인 앱에 공격을 시도하여 취약점 탐지. (OWASP ZAP 등)</li>
+                </ul>
             </div>
 
-            <h2>2. CI 파이프라인에서의 테스트</h2>
-            <p>테스트는 로컬에서도 돌아가야 하지만, CI 서버에서 반드시 성공해야 병합될 수 있도록 강제해야 합니다.</p>
-            <div class="code-block">
-                <pre><code># Vitest를 이용한 단위 테스트 사례
-import { describe, it, expect } from 'vitest'
-import { calculateDiscount } from './pricing'
+            <h2>2. 파이프라인 보안 자동화 항목</h2>
+            <ol>
+                <li><strong>Secret Scanning:</strong> Git에 API 키나 비밀번호가 평문으로 포함되었는지 검사.</li>
+                <li><strong>SCA (Software Composition Analysis):</strong> 사용 중인 오픈소스 라이브러리에 알려진 취약점(CVE)이 있는지 확인.</li>
+                <li><strong>Container Scanning:</strong> 베이스 이미지나 패키지에 보안 결함이 있는지 스캔. (Trivy 등)</li>
+            </ol>
 
-describe('pricing logic', () => {
-  it('should apply 20% discount for VIP', () => {
-    const price = calculateDiscount(100, 'VIP')
-    expect(price).toBe(80)
-  })
-})</code></pre>
+            <div class="code-block">
+                <pre><code># Trivy를 이용한 취약점 스캔 예시
+- name: Security Scan with Trivy
+  uses: aquasecurity/trivy-action@master
+  with:
+    image-ref: 'my-app:${{ github.sha }}'
+    format: 'table'
+    exit-code: '1' # 심각한 취약점 발견 시 빌드 실패 처리
+    severity: 'CRITICAL,HIGH'</code></pre>
             </div>
 
             <div class="info-box green">
-                <h3>체크포인트: 코드 커버리지(Coverage)</h3>
-                <p>단순히 커버리지 100%를 목표로 잡지 마세요. 중요한 비즈니스 로직이 담긴 핵심 코드가 제대로 테스트되고 있는지가 훨씬 중요합니다. 통상 80% 내외를 건강한 수치로 봅니다.</p>
+                <h3>조직의 문화: 보안은 모두의 책임</h3>
+                <p>보안 팀이 따로 있는 것이 아니라, 모든 개발자가 자신이 짠 코드의 보안성을 파이프라인 결과를 통해 책임지는 문화를 구축하는 것이 DevSecOps의 궁극적인 목표입니다.</p>
             </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
-            <a href="cicd_github_actions.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="cicd_pipeline_design.html" class="btn btn-primary">다음 단계: 3. 파이프라인 설계 <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="cicd_deployment_strategies.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="observability.html" class="btn btn-primary">다음 챕터: 2. 모니터링 & 로깅 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

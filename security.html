@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>보안 & 환경 분리 - DevOps Roadmap</title>
+    <title>보안 및 환경 분리 (Security) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,7 +14,6 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
-            
             <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
@@ -22,7 +21,6 @@
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html" class="active"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
-
             <li class="nav-category">심화 과정 (Step 07-13)</li>
             <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
             <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
@@ -37,17 +35,16 @@
     <main class="main-content">
         <div class="detail-header">
             <span class="badge in-progress">STEP 06</span>
-            <h1 class="page-title" style="margin-top: 1rem;">보안 및 데이터 환경 격리</h1>
-            <p class="page-subtitle" style="margin-bottom: 0;">개발 중에 유저 데이터를 날리지 않기 위한 필수적 안전 장치 설계.</p>
+            <h1 class="page-title" style="margin-top: 1rem;">보안 및 환경 분리 (Security)</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">가장 취약한 고리를 찾아내고, 인프라를 논리적으로 격리하여 방어 체계 구축하기.</p>
         </div>
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-            <!-- Main Details -->
             <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-red);">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-shield-halved"></i> 보안 설계 원칙 (Pro's Review)</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-shield"></i> 보안은 사후 처리가 아닌 '기본 설계'입니다</h2>
                 <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
-                    <p>데브옵스에서의 보안은 마지막 단계에 수행하는 '검사'가 아니라, 첫 줄의 코드를 짤 때부터 함께하는 **'문화'**여야 합니다. 이를 **DevSecOps**라고 부릅니다.</p>
-                    <p style="margin-top: 1rem;">이 장에서는 보안 취약점을 자동으로 찾아내고, 개발/검증/운영 환경을 물리적으로 완벽하게 격리하며, 시크릿 정보를 안전하게 관리하는 법을 배웁니다. 최고의 보안은 '막는 것'이 아니라 보안 사고가 나더라도 피해가 확산되지 않는 **격리된 아키텍처**를 설계하는 데 있습니다.</p>
+                    <p>데브옵스 환경에서 보안은 개발 속도를 늦추는 장애물이 되어서는 안 됩니다. 소스 코드 수정부터 실제 배포까지 모든 단계에 보안 체크를 자동화하고(DevSecOps), 스테이징과 프로덕션 환경을 철저히 격리하여 장애나 사고의 전파를 막아야 합니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 비밀 정보를 관리하는 법, 환경 간 격리 전략, 그리고 실무적인 보안 사고 대응 자동화를 학습합니다.</p>
                 </div>
             </div>
 
@@ -57,57 +54,57 @@
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="sec_shift_left.html" style="color: inherit; text-decoration: none;">1. Shift-Left Security: 조기 보안 진단</a></h4>
-                            <p>코드를 짜는 즉시 취약점을 스캔하는 SAST/SCA 도구를 파이프라인에 통합하여 보안 이슈를 미리 제거합니다.</p>
+                            <h4><a href="sec_shift_left.html" style="color: inherit; text-decoration: none;">1. Shift-Left Security</a></h4>
+                            <p>개발 초기 단계부터 보안 스캐닝(SAST/SCA)을 자동화하여 취약점을 조기에 제거합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="sec_isolation.html" style="color: inherit; text-decoration: none;">2. Environment Isolation: 물리적 격리</a></h4>
-                            <p>클라우드 계정과 네트워크 레벨에서 개발(Dev)과 운영(Prod) 환경을 완벽하게 분리하여 "실수로 운영 DB를 삭제하는 일"을 방지합니다.</p>
+                            <h4><a href="sec_secrets.html" style="color: inherit; text-decoration: none;">2. Secrets Management</a></h4>
+                            <p>API 키와 비밀번호를 코드에서 분리하고, HashiCorp Vault 등을 이용해 안전하게 관리합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="sec_secrets.html" style="color: inherit; text-decoration: none;">3. Secrets Management: 시크릿 관리</a></h4>
-                            <p>.env 파일을 넘어 HashiCorp Vault나 AWS Secrets Manager를 사용해 인증 정보를 안전하게 보관하고 주입합니다.</p>
+                            <h4><a href="sec_isolation.html" style="color: inherit; text-decoration: none;">3. Environment Isolation</a></h4>
+                            <p>네트워크 수준에서의 격리(VPC/Subnet)와 개발/스테이징/리얼 환경의 논리적 분리를 구현합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="sec_policy_code.html" style="color: inherit; text-decoration: none;">4. Policy as Code: 규범 준수 자동화</a></h4>
-                            <p>조직의 보안 규정을 코드로 정의하고(Checkov, OPA), 이를 위반한 인프라는 배포되지 못하도록 강제합니다.</p>
+                            <h4><a href="sec_policy_code.html" style="color: inherit; text-decoration: none;">4. Policy as Code (PaC)</a></h4>
+                            <p>보안 규정을 코드로 정의하고(OPA), 규정에 맞지 않는 리소스 생성을 자동으로 차단합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="sec_incident.html" style="color: inherit; text-decoration: none;">5. Incident Response: 탐지와 대응</a></h4>
-                            <p>런타임에 일어나는 이상 행위를 감지하고, 장애나 보안 사고 발생 시 빠르게 대응할 수 있는 추적 체계를 구축합니다.</p>
+                            <h4><a href="sec_incident.html" style="color: inherit; text-decoration: none;">5. Incident Automation</a></h4>
+                            <p>보안 사고 감지 시 알람 발송 및 즉각적인 리소스 차단 프로세스를 실습합니다.</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Side Refs -->
             <div class="glass-card">
                 <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
                 <div class="tech-grid" style="margin-bottom: 2rem;">
-                    <span class="tech-tag">GitHub Secrets</span>
-                    <span class="tech-tag">AWS Secrets Manager</span>
-                    <span class="tech-tag">Redis Rate Limiter</span>
+                    <span class="tech-tag">HashiCorp Vault</span>
+                    <span class="tech-tag">OPA</span>
+                    <span class="tech-tag">Trivy</span>
+                    <span class="tech-tag">Snyk</span>
                 </div>
 
-                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">핵심 가이드</h2>
                 <div class="resource-list">
-                    <a href="https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions" target="_blank" class="resource-item">
-                        <i class="fa-solid fa-lock" style="font-size: 1.5rem;"></i>
+                    <a href="https://www.vaultproject.io/" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-vault" style="font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="display:block; font-size: 0.9rem;">GitHub Secrets</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">환경변수 안전 관리</span>
+                            <strong style="display:block; font-size: 0.9rem;">Vault Documentation</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">현대적인 비밀 정보 관리의 표준</span>
                         </div>
                     </a>
                 </div>

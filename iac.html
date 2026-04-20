@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IaC (코드형 인프라) - DevOps Roadmap</title>
+    <title>코드형 인프라 (IaC) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,7 +14,6 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
-            
             <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
@@ -22,7 +21,6 @@
             <li><a href="iac.html" class="active"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
-
             <li class="nav-category">심화 과정 (Step 07-13)</li>
             <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
             <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
@@ -36,18 +34,17 @@
 
     <main class="main-content">
         <div class="detail-header">
-            <span class="badge todo">STEP 04</span>
-            <h1 class="page-title" style="margin-top: 1rem;">인프라 코드 관리 (IaC)</h1>
-            <p class="page-subtitle" style="margin-bottom: 0;">개발을 위한 AWS 콘솔의 수동 프로비저닝을 벗어나 선언형 아키텍처로 진화하기.</p>
+            <span class="badge in-progress">STEP 04</span>
+            <h1 class="page-title" style="margin-top: 1rem;">코드형 인프라 (IaC)</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">마우스 클릭이 아닌 코드로 인프라를 프로비저닝하고 관리하기.</p>
         </div>
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-            <!-- Main Details -->
-            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-purple);">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-cubes"></i> 인프라 설계 원칙 (Pro's Review)</h2>
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-blue);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-cubes"></i> 클릭은 잊으세요, 선언문이 법입니다</h2>
                 <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
-                    <p>전통적인 운영 방식이 관리 콘솔(AWS Console 등)에서 버튼을 눌러 서버를 생성하는 것이라면, **IaC**는 인프라를 하나의 **'소프트웨어 프로젝트'**로 취급하는 것입니다.</p>
-                    <p style="margin-top: 1rem;">이 장에서는 Terraform을 통해 인프라를 코드로 정의하고 버전 관리하는 법을 배웁니다. 핵심은 단순히 코드를 짜는 것이 아니라, 인프라의 상태(State)를 안전하게 관리하고 재사용 가능한 모듈로 추상화하는 설계 능력을 갖추는 데 있습니다.</p>
+                    <p>전통적인 방식은 웹 콘솔에서 수동으로 서버를 생성하고 설정했습니다. 하지만 IaC는 인프라의 최종 상태를 코드로 작성하고, 이를 실행하여 인프라를 구축합니다. 이는 인프라의 버전 관리, 재현성, 협업을 가능하게 하는 데브옵스의 핵심입니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 Terraform을 통해 클라우드 리소스를 정의하고, 복잡한 인프라를 효율적으로 관리하는 패턴을 익힙니다.</p>
                 </div>
             </div>
 
@@ -57,57 +54,57 @@
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="iac_foundations.html" style="color: inherit; text-decoration: none;">1. Foundations: 왜 IaC인가?</a></h4>
-                            <p>선언적(Declarative) 코드와 불변 인프라의 철학을 배우고 Terraform의 기본 동작 원리를 이해합니다.</p>
+                            <h4><a href="iac_foundations.html" style="color: inherit; text-decoration: none;">1. IaC Foundations</a></h4>
+                            <p>명령형(Imperative) vs 선언형(Declarative)의 차이와 배포 전략을 이해합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="iac_state.html" style="color: inherit; text-decoration: none;">2. State Management: 상태 관리 전략</a></h4>
-                            <p>가장 중요한 `.tfstate` 파일의 역할을 배우고 원격 백엔드와 잠금(Locking) 설정을 실습합니다.</p>
+                            <h4><a href="iac_state.html" style="color: inherit; text-decoration: none;">2. State Management</a></h4>
+                            <p>인프라의 상태를 기록하는 State 파일의 중요성과 원격 저장(Remote State) 및 락킹(Locking)을 배웁니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="iac_modules.html" style="color: inherit; text-decoration: none;">3. Modules & DRY: 인프라 모듈화</a></h4>
-                            <p>재사용 가능한 모듈 설계법을 배우고 코드 중복을 최소화하는 인프라 아키텍처를 설계합니다.</p>
+                            <h4><a href="iac_modules.html" style="color: inherit; text-decoration: none;">3. Reusable Modules</a></h4>
+                            <p>반복되는 리소스들을 모듈화하여 코드 중복을 줄이고 전사 표준의 리소스를 배포합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="iac_pipelines.html" style="color: inherit; text-decoration: none;">4. Infrastructure Pipeline: 인프라 CI/CD</a></h4>
-                            <p>코드 리뷰 후 자동으로 인프라가 배포(Plan/Apply)되는 자동화 파이프라인을 구축합니다.</p>
+                            <h4><a href="iac_pipelines.html" style="color: inherit; text-decoration: none;">4. IaC CI/CD Pipelines</a></h4>
+                            <p>Terraform `plan` 결과를 검토하고 승인 후 `apply` 하는 자동화 파이프라인을 구축합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="iac_drift.html" style="color: inherit; text-decoration: none;">5. Governance & Drift: 보안 가드레일</a></h4>
-                            <p>인프라 변경 감지(Drift Detection)와 Policy as Code를 이용해 보안 정책을 자동으로 강제합니다.</p>
+                            <h4><a href="iac_drift.html" style="color: inherit; text-decoration: none;">5. Drift Detection</a></h4>
+                            <p>코드와 실제 인프라의 정합성이 깨지는 'Drift' 현상을 탐지하고 수정하는 법을 익힙니다.</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Side Refs -->
             <div class="glass-card">
                 <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
                 <div class="tech-grid" style="margin-bottom: 2rem;">
                     <span class="tech-tag">Terraform</span>
-                    <span class="tech-tag">AWS IAM</span>
-                    <span class="tech-tag">AWS S3 / VPC</span>
+                    <span class="tech-tag">Pulumi</span>
+                    <span class="tech-tag">Ansible</span>
+                    <span class="tech-tag">AWS CloudFormation</span>
                 </div>
 
-                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">핵심 가이드</h2>
                 <div class="resource-list">
-                    <a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started" target="_blank" class="resource-item">
-                        <i class="fa-solid fa-code" style="font-size: 1.5rem;"></i>
+                    <a href="https://www.terraform.io/" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-mountain" style="font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="display:block; font-size: 0.9rem;">Terraform 시작하기</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">HashiCorp AWS 튜토리얼</span>
+                            <strong style="display:block; font-size: 0.9rem;">Terraform Documentation</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">인프라 코드화의 선두주자</span>
                         </div>
                     </a>
                 </div>

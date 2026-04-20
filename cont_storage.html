@@ -3,35 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>데이터 영속성: 볼륨 - DevOps Roadmap</title>
+    <title>Storage & Persistence - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .info-box {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -40,53 +14,72 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="container.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 컨테이너 목록으로 돌아가기
             </a>
-            <span class="badge progress">Deep Dive 4</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Storage & Persistence: 데이터 보존</h1>
-            <p class="page-subtitle">컨테이너가 삭제되어도 데이터는 사라지지 않아야 합니다</p>
+            <span class="badge progress">Deep Dive 5</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Storage & Persistence (데이터 보존)</h1>
+            <p class="page-subtitle">휘발성 컨테이너 환경에서 데이터를 반영구적으로 관리하기</p>
         </div>
 
         <section class="content-section">
-            <h2>1. 컨테이너의 비영속성 (Ephemeral)</h2>
-            <p>
-                컨테이너 내부에서 생성된 데이터는 컨테이너가 삭제되면 **함께 사라집니다.** 
-                DB의 데이터나 사용자가 업로드한 이미지가 사라지는 비극을 막으려면, 데이터를 컨테이너 외부(호스트 서버)에 저장해야 합니다.
-            </p>
-
-            <div class="info-box">
-                <h3 style="color: #ef4444;">주의: 컨테이너 내부 데이터는 휘발성</h3>
-                <p>도커 로그나 임시 파일은 괜찮지만, 영구적으로 보관해야 할 데이터는 절대 컨테이너 내부에만 두지 마세요.</p>
+            <h2>1. 컨테이너의 데이터는 '휘발성'입니다</h2>
+            <p>컨테이너 내부에서 생성된 파일은 컨테이너가 삭제되면 함께 사라집니다. 데이터베이스 파일이나 로그 등 보관이 필요한 자산은 호스트 시스템의 저장소에 연결해야 합니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>Volumes vs Bind Mounts</h3>
+                <ul>
+                    <li><strong>Volumes:</strong> Docker가 관리하는 저장 공간. 성능이 좋고 관리가 쉬워 가장 권장됨.</li>
+                    <li><strong>Bind Mounts:</strong> 호스트의 특정 폴더를 직접 연결. 설정 파일(config)을 주입할 때 주로 사용.</li>
+                    <li><strong>tmpfs:</strong> 메모리에만 저장. 보안이 중요한 임시 파일 처리에 적합.</li>
+                </ul>
             </div>
 
-            <h2>2. 볼륨(Volume) vs 바인드 마운트(Bind Mount)</h2>
+            <h2>2. 볼륨 사용 전략</h2>
             <ul>
-                <li><strong>Volumes:</strong> 도커가 직접 관리하는 보관 구역. 성능이 좋고 관리가 쉬워 실무에서 상용 환경에 가장 많이 쓰입니다.</li>
-                <li><strong>Bind Mounts:</strong> 호스트의 특정 폴더를 컨테이너와 연결. 개발 환경에서 소스 코드를 바로 반영하고 싶을 때 유용합니다.</li>
+                <li><strong>Anonymous Volume:</strong> 이름 없는 볼륨. 임시 데이터 처리에 쓰이지만 관리가 어려워 권장하지 않음.</li>
+                <li><strong>Named Volume:</strong> 이름이 있는 볼륨. 여러 컨테이너가 공유하거나 나중에 다시 연결하기 좋음.</li>
             </ul>
 
-            <h2>3. 보관 전략</h2>
-            <p>
-                데이터베이스 컨테이너를 띄울 때는 반드시 <code>-v db_data:/var/lib/postgresql/data</code> 처럼 명시적인 볼륨 설정을 해야 합니다. 
-                이것이 컨테이너 환경에서 무중단으로 데이터를 안전하게 관리하는 핵심 기술입니다.
-            </p>
+            <div class="code-block">
+                <pre><code># 볼륨 생성 및 컨테이너 연결 예시
+docker volume create my-db-data
+
+docker run -d \
+  --name production-db \
+  -v my-db-data:/var/lib/mysql \
+  mysql:8.0</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>실무 조언: 데이터 백업</h3>
+                <p>볼륨을 쓴다고 해서 백업이 공짜로 되는 것은 아닙니다. 주기적으로 `docker run --volumes-from` 등의 명령을 사용하여 볼륨 데이터를 아카이빙하거나, 클라우드의 스냅샷 기능을 연동하세요.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <a href="cont_networking.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="cont_compose.html" class="btn btn-primary">다음 단계: 5. Docker Compose <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="iac.html" class="btn btn-primary">다음 챕터: 4. 코드형 인프라 (IaC) <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

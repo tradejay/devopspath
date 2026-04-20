@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>블로그 자동화 - DevOps Roadmap</title>
+    <title>블로그 자동화 (Automation) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,7 +14,6 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
-            
             <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
@@ -22,7 +21,6 @@
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html" class="active"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
-
             <li class="nav-category">심화 과정 (Step 07-13)</li>
             <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
             <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
@@ -36,18 +34,17 @@
 
     <main class="main-content">
         <div class="detail-header">
-            <span class="badge todo">STEP 05 (Requested)</span>
-            <h1 class="page-title" style="margin-top: 1rem;">마케팅 & 백데이터 연동 블로그 배포 자동화</h1>
-            <p class="page-subtitle" style="margin-bottom: 0;">서비스 운영 데이터, 주간 통계를 마케팅 블로그 포스트로 변환해 자동 발간하는 파이프라인.</p>
+            <span class="badge in-progress">STEP 05</span>
+            <h1 class="page-title" style="margin-top: 1rem;">블로그 자동화 (Automation)</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">데브옵스 기술을 실생활에 적용하기: 정적 사이트 배포와 콘텐츠 자동화.</p>
         </div>
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-            <!-- Main Details -->
-            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-cyan);">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-robot"></i> 마케팅 자동화 설계 원칙 (Pro's Review)</h2>
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-purple);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-rss"></i> 기술 블로그도 엔지니어링입니다</h2>
                 <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
-                    <p>마케팅 블로그나 랜딩 페이지는 **'속도'**와 **'자율성'**이 생명입니다. 개발자가 매번 배포해 주기를 기다리는 것이 아니라, 마케터가 글을 쓰는 즉시 자동으로 전 세계에 배포되는 아키텍처가 필요합니다.</p>
-                    <p style="margin-top: 1rem;">이 장에서는 현대적인 **Jamstack** 아키텍처를 기반으로 정적 사이트 생성기(SSG)와 Headless CMS를 연결하는 법을 배웁니다. 핵심은 콘텐츠의 수정이 기술적 개입 없이 빌드 파이프라인과 완벽하게 연결되는 자동화Flow를 완성하는 데 있습니다.</p>
+                    <p>단순한 글쓰기 공간을 넘어, 블로그는 현대적 웹 배포 기술을 연습하기 좋은 훌륭한 샌드박스입니다. SSG(Static Site Generation), headless CMS 연동, GitHub Actions를 통한 자동 배포, 그리고 CDN 최적화까지 이어지는 전체 파이프라인을 구축해 봅니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 Notion이나 Markdown으로 작성한 글이 자동으로 웹에 배포되는 'Zero-Touch' 자동화를 직접 구현합니다.</p>
                 </div>
             </div>
 
@@ -57,65 +54,57 @@
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="auto_ssg.html" style="color: inherit; text-decoration: none;">1. SSG Selection: 기술 스택 선정</a></h4>
-                            <p>성능과 SEO에 최적화된 정적 사이트 생성기(Astro, Next.js, Hugo)의 특징을 이해하고 목표에 맞는 도구를 선택합니다.</p>
+                            <h4><a href="auto_ssg.html" style="color: inherit; text-decoration: none;">1. SSG (Static Site Generation)</a></h4>
+                            <p>Next.js나 Astro를 사용하여 빌드 타임에 미리 페이지를 생성하는 고성능 웹 아키텍처를 이해합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="auto_cms.html" style="color: inherit; text-decoration: none;">2. Headless CMS: 콘텐츠 관리</a></h4>
-                            <p>Contentful, Ghost 등 DB 없이 API로 콘텐츠를 관리하는 Headless CMS를 연동하여 기획자와 개발자를 분리합니다.</p>
+                            <h4><a href="auto_cms.html" style="color: inherit; text-decoration: none;">2. Headless CMS Integration</a></h4>
+                            <p>Notion API나 Contentful을 블로그의 백엔드로 활용하여 데이터와 UI를 분리합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="auto_webhooks.html" style="color: inherit; text-decoration: none;">3. Webhooks & Triggers: 이벤트 기반 빌드</a></h4>
-                            <p>CMS에서 글이 발행되는 즉시 배포 파이프라인을 트리거하여 실시간으로 정적 페이지를 재생성하는 Flow를 구축합니다.</p>
+                            <h4><a href="auto_webhooks.html" style="color: inherit; text-decoration: none;">3. Event-driven Webhooks</a></h4>
+                            <p>콘텐츠가 업데이트될 때마다 Vercel이나 GitHub에 신호를 보내 재빌드를 트리거하는 자동화를 구축합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="auto_scheduling.html" style="color: inherit; text-decoration: none;">4. Scheduled Updates: 자동 수집 및 업데이트</a></h4>
-                            <p>GitHub Actions의 Cron 기능을 활용하여 정기적으로 외부 데이터를 수집하고 블로그 지표를 자동 업데이트합니다.</p>
+                            <h4><a href="auto_scheduling.html" style="color: inherit; text-decoration: none;">4. Automation Scheduling</a></h4>
+                            <p>GitHub Actions의 `cron` 기능을 활용하여 주기적으로 데이터를 갱신하거나 사이트맵을 업데이트합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="auto_cdn.html" style="color: inherit; text-decoration: none;">5. Global Delivery: CDN & Edge</a></h4>
-                            <p>전 세계 사용자에게 0.1초 만에 응답하기 위한 CDN 캐싱 전략과 Edge Functions 활용법을 실습합니다.</p>
+                            <h4><a href="auto_cdn.html" style="color: inherit; text-decoration: none;">5. CDN & Asset Optimization</a></h4>
+                            <p>Cloudflare나 CloudFront를 통해 전 세계 사용자에게 빠르게 콘텐츠를 전달하고 캐싱 전략을 수립합니다.</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Side Refs -->
             <div class="glass-card">
                 <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
                 <div class="tech-grid" style="margin-bottom: 2rem;">
                     <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">Notion API</span>
                     <span class="tech-tag">Vercel</span>
-                    <span class="tech-tag">GitHub Actions cron</span>
-                    <span class="tech-tag">Markdown/MDX</span>
+                    <span class="tech-tag">Cloudflare</span>
                 </div>
 
-                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">핵심 가이드</h2>
                 <div class="resource-list">
-                    <a href="https://nextjs.org/learn/basics/data-fetching/blog-data" target="_blank" class="resource-item">
-                        <i class="fa-solid fa-n" style="font-size: 1.5rem;"></i>
+                    <a href="https://nextjs.org/docs" target="_blank" class="resource-item">
+                        <i class="fa-brands fa-react" style="font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="display:block; font-size: 0.9rem;">Next.js 블로그 만들기</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">공식 튜토리얼 SSG 기초</span>
-                        </div>
-                    </a>
-                    <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule" target="_blank" class="resource-item">
-                        <i class="fa-regular fa-clock" style="font-size: 1.5rem;"></i>
-                        <div>
-                            <strong style="display:block; font-size: 0.9rem;">GitHub Actions Schedule</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">스케줄링 문법 (Cron)</span>
+                            <strong style="display:block; font-size: 0.9rem;">Next.js SSG Guide</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">정적 사이트 생성을 위한 최고 사양 프레임워크</span>
                         </div>
                     </a>
                 </div>

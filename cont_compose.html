@@ -3,43 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>도커 컴포즈 - DevOps Roadmap</title>
+    <title>Multi-Service with Compose - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .code-block {
-            background: #0d1117;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            border: 1px solid var(--border-light);
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #c9d1d9;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -48,67 +14,78 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="container.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 컨테이너 목록으로 돌아가기
             </a>
-            <span class="badge progress">Deep Dive 5</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Multi-Container: Docker Compose</h1>
-            <p class="page-subtitle">여러 컨테이너를 하나로 묶어 관리하는 오케스트레이션 기초</p>
+            <span class="badge progress">Deep Dive 3</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Multi-Service with Compose</h1>
+            <p class="page-subtitle">복잡한 서비스 환경을 한 번에 제어하는 선언형 선언문 작성</p>
         </div>
 
         <section class="content-section">
             <h2>1. 왜 Docker Compose인가?</h2>
-            <p>
-                현대적인 서비스는 웹 서버, DB, 레디스, 워커 등 여러 개의 컨테이너가 협력해서 동작합니다. 
-                이것을 매번 <code>docker run</code>으로 수동 실행하는 것은 불가능에 가깝습니다. 
-                Docker Compose는 이 복잡한 구성을 한 장의 <code>docker-compose.yml</code> 선언서로 관리하게 해줍니다.
-            </p>
+            <p>실제 애플리케이션은 단일 컨테이너가 아니라 Web, API, Database, Redis 등 여러 서비스가 연결된 구조입니다. 이를 수동으로 하나씩 띄우는 것은 매우 비효율적입니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>Docker Compose의 장점</h3>
+                <ul>
+                    <li><strong>선언적 정의:</strong> `docker-compose.yml` 파일 하나로 인프라를 정의합니다.</li>
+                    <li><strong>독립된 네트워크:</strong> 서비스끼리만 통신할 수 있는 격리된 네트워크를 자동으로 구축합니다.</li>
+                    <li><strong>환경 재현:</strong> 어떤 PC에서든 `docker-compose up` 명령 하나로 동일한 개발 환경을 구축합니다.</li>
+                </ul>
+            </div>
 
+            <h2>2. 서비스 의존성 및 환경 설정</h2>
+            <p>서비스 간의 선후 관계(`depends_on`)와 외부로 노출하지 않을 내부 변수 관리가 핵심입니다.</p>
             <div class="code-block">
-                <pre><code>version: '3.8'
+                <pre><code># docker-compose.yml 예시
 services:
   web:
     build: .
     ports:
-      - "80:3000"
+      - "80:80"
     depends_on:
       - db
   db:
-    image: postgres:15
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
+
 volumes:
   db_data:</code></pre>
             </div>
 
-            <h2>2. 멱등성 (Idempotency)의 즐거움</h2>
-            <p>
-                <code>docker-compose up -d</code> 명령어를 실행하면 도커는 현재 상태와 파일에 적힌 희망하는 상태를 비교합니다. 
-                이미 실행 중인 컨테이너는 건드리지 않고, 바뀐 부분만 업데이트하거나 새로 만듭니다. 
-                이러한 **선언적 방식**은 데브옵스 철학의 핵심인 '코드형 인프라'의 맛보기라고 할 수 있습니다.
-            </p>
-
-            <h2>3. 실무 팁: 개발 환경의 통일</h2>
-            <p>
-                팀원 모두가 똑같은 <code>docker-compose.yml</code>을 가지고 있으면 "내 컴퓨터에 DB가 안 깔려 있어요"라는 말이 사라집니다. 
-                한 번의 명령으로 모든 팀원이 동일한 개발 환경을 100% 재현할 수 있게 되는 것이 프로젝트 자동화의 종착역입니다.
-            </p>
+            <div class="info-box green">
+                <h3>운영 팁: 환경 변수 관리</h3>
+                <p>비밀번호나 API 키 같은 민감 정보는 YAML에 직접 노출하지 마세요. `.env` 파일을 활용하거나 CI/CD 도구의 Secrets 기능을 연결하여 유연하게 대입해야 합니다.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
-            <a href="cont_storage.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="iac.html" class="btn btn-primary">다음 장: 4. IaC 로 이동 <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="cont_images.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="cont_networking.html" class="btn btn-primary">다음 단계: 4. 컨테이너 네트워킹 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

@@ -3,43 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이미지 레이어와 최적화 - DevOps Roadmap</title>
+    <title>High-Performance Images - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .code-block {
-            background: #0d1117;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            border: 1px solid var(--border-light);
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #c9d1d9;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -48,63 +14,74 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="container.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 컨테이너 목록으로 돌아가기
             </a>
             <span class="badge progress">Deep Dive 2</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Images & Layers: 빌드 최적화</h1>
-            <p class="page-subtitle">작고 단단한 이미지를 만드는 Multi-stage 빌드 기법</p>
+            <h1 class="page-title" style="margin-top: 1rem;">High-Performance Images (이미지 최적화)</h1>
+            <p class="page-subtitle">작고, 빠르고, 안전한 이미지를 빌드하기 위한 모범 사례</p>
         </div>
 
         <section class="content-section">
-            <h2>1. 이미지 레이어 구조</h2>
-            <p>
-                도커 이미지는 여러 개의 읽기 전용 레이어(Layer)가 쌓인 구조입니다. <code>Dockerfile</code>의 각 명령어 하나(RUN, COPY 등)가 새로운 레이어를 형성합니다. 
-                중요한 점은 **레이어 캐싱**입니다. 상단 레이어가 바뀌지 않으면 도커는 이전 빌드 결과를 재사용하여 속도를 높입니다.
-            </p>
-
-            <h2>2. Multi-stage 빌드의 마법</h2>
-            <p>
-                소스 코드를 빌드할 때는 많은 라이브러리와 툴이 필요하지만, 실행할 때는 결과물(바이너리)만 있으면 됩니다. 
-                이 간극을 메우는 것이 Multi-stage 빌드입니다.
-            </p>
-
-            <div class="code-block">
-                <pre><code># 1단계: 빌드 환경 (Build Stage)
-FROM node:18 AS builder
-WORKDIR /app
-COPY . .
-RUN npm install && npm run build
-
-# 2단계: 실행 환경 (Production Stage)
-FROM node:18-alpine
-WORKDIR /app
-# 빌드 결과물만 쏙 빼옵니다!
-COPY --from=builder /app/dist ./dist
-CMD ["node", "dist/main.js"]</code></pre>
+            <h2>1. 레이어 구조의 이해</h2>
+            <p>도커 이미지는 읽기 전용 레이어들의 쌓임으로 구성됩니다. 각 명령어(RUN, COPY, ADD)는 새로운 레이어를 생성하며, 이 레이어들이 캐싱되어 빌드 속도를 높입니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>Multi-stage Build: 용량 다이어트의 핵심</h3>
+                <p>컴파일 시 필요한 도구들(Build Dependencies)과 실행 시 필요한 바이너리만 남기는 기법입니다. 수 GB 하던 이미지를 수십 MB로 줄일 수 있습니다.</p>
             </div>
 
-            <h2>3. 실무 팁: .dockerignore</h2>
-            <p>
-                <code>node_modules</code>나 <code>.git</code> 같은 폴더는 이미지에 포함될 필요가 없습니다. 
-                <code>.dockerignore</code> 파일을 만들어 불필요한 파일이 레이어에 포함되지 않게 관리하면 이미지 용량을 획기적으로 줄일 수 있습니다.
-            </p>
+            <h2>2. 이미지 최적화 체크리스트</h2>
+            <ul>
+                <li><strong>Base Image 선택:</strong> `alpine`이나 `distroless` 같이 최소한의 패키지만 포함된 이미지를 쓰세요.</li>
+                <li><strong>.dockerignore 활용:</strong> 소스 코드 외에 `node_modules`, 로컬 로그, Git 설정 등이 이미지에 포함되지 않게 하세요.</li>
+                <li><strong>명령어 결합:</strong> 레이어 수를 줄이기 위해 연관된 `RUN` 명령어는 `&&`로 묶으세요.</li>
+            </ul>
+
+            <div class="code-block">
+                <pre><code># Multi-stage Dockerfile 예시
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx:stable-alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>보안 팁: Root 사용 중지</h3>
+                <p>컨테이너 내부에서도 기본적으로 Root 사용자로 실행하지 않는 것이 좋습니다. `USER` 명령어를 통해 보안이 강화된 특정 유저로 실행되도록 설정하세요.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <a href="cont_foundations.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="cont_networking.html" class="btn btn-primary">다음 단계: 3. Networking <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="cont_compose.html" class="btn btn-primary">다음 단계: 3. 멀티 컨테이너 오케스트레이션 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

@@ -3,50 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상태 관리 전략 - DevOps Roadmap</title>
+    <title>State Management - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-purple);
-            border-left: 4px solid var(--accent-purple);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .info-box {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-        .code-block {
-            background: #0d1117;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            border: 1px solid var(--border-light);
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #c9d1d9;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -55,64 +14,75 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html" class="active"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="iac.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> IaC 목록으로 돌아가기
             </a>
             <span class="badge progress">Deep Dive 2</span>
-            <h1 class="page-title" style="margin-top: 1rem;">State Management: 상태 관리</h1>
-            <p class="page-subtitle">인프라의 생명줄, .tfstate 파일을 다루는 안전한 방법</p>
+            <h1 class="page-title" style="margin-top: 1rem;">State Management (상태 관리)</h1>
+            <p class="page-subtitle">인프라의 과거와 현재를 연결하는 Terraform의 '기억 장치'</p>
         </div>
 
         <section class="content-section">
-            <h2>1. .tfstate 파일이란?</h2>
-            <p>
-                테라폼은 사용자가 작성한 코드와 실제 클라우드 인프라가 어떻게 매핑되어 있는지를 `terraform.tfstate`라는 파일에 기록합니다. 
-                이 파일이 없으면 테라폼은 수많은 리소스 중 어떤 것이 자신이 만든 것인지 알 수 없습니다.
-            </p>
-
-            <div class="info-box">
-                <h3 style="color: #ef4444;">절대 금기: 로컬에 보관하지 마세요!</h3>
-                <p>로컬 PC의 `tfstate` 파일을 잃어버리거나 다른 개발자와 다른 버전을 가지고 있으면 인프라가 엉망이 됩니다. 또한 이 파일에는 패스워드 등 민감한 정보가 포함될 수 있어 보안상 매우 위험합니다.</p>
+            <h2>1. Terraform State 파일의 정체</h2>
+            <p>Terraform은 코드로 정의된 자산과 실제 클라우드 리소스를 맵핑하기 위해 별도의 `terraform.tfstate` 파일을 유지합니다. 여기에는 실제 리소스의 ID, 설정 정보 등이 JSON 형식으로 저장됩니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>왜 State가 중요한가?</h3>
+                <ul>
+                    <li><strong>리소스 추적:</strong> 어떤 자산이 테라폼에 의해 관리되는지 식별합니다.</li>
+                    <li><strong>변경 사항 감지:</strong> 코드와 실제 환경 사이의 차이점(Diff)을 계산합니다.</li>
+                    <li><strong>메타데이터 관리:</strong> 리소스 간의 의존성 정보를 저장합니다.</li>
+                </ul>
             </div>
 
-            <h2>2. 원격 백엔드 (Remote Backend)</h2>
-            <p>
-                협업을 위해 `tfstate` 파일을 AWS S3 같은 **중앙 저장소**에 보관해야 합니다. 
-                이때, 두 명이 동시에 수정해서 충돌이 나는 것을 막기 위해 **DynamoDB를 이용한 잠금(Locking)** 기능을 함께 사용합니다.
-            </p>
+            <h2>2. 원격 상태 저장 (Remote State Backend)</h2>
+            <p>협업 시 로컬에 State 파일을 두면 서로 동기화되지 않아 인프라가 꼬이게 됩니다. 반드시 S3, GCS 같은 원격 저장소를 사용해야 합니다.</p>
+            <ul>
+                <li><strong>Shared Storage:</strong> 팀원 모두가 동일한 State를 참조하게 함.</li>
+                <li><strong>State Locking:</strong> 동시에 여러 명이 인프라를 수정하지 못하게 잠금(Ex: DynamoDB) 처리. (Race Condition 방지)</li>
+            </ul>
 
             <div class="code-block">
-                <pre><code>terraform {
+                <pre><code># S3 백엔드 설정 예시
+terraform {
   backend "s3" {
-    bucket         = "my-terraform-state"
-    key            = "prod/terraform.tfstate"
+    bucket         = "my-terraform-state-bucket"
+    key            = "dev/frontend/terraform.tfstate"
     region         = "ap-northeast-2"
-    dynamodb_table = "terraform-lock"
+    dynamodb_table = "terraform-lock-table"
   }
 }</code></pre>
             </div>
 
-            <h2>3. 워크스페이스 (Workspaces)</h2>
-            <p>
-                환경(Dev, Staging, Prod)을 분리할 때 유용합니다. 
-                똑같은 코드를 쓰되, 워크스페이스만 바꿔서 별도의 인프라 그룹을 격리하여 관리할 수 있습니다.
-            </p>
+            <div class="info-box yellow">
+                <h3>주의: State는 비밀 저장소가 아닙니다</h3>
+                <p>State 파일에는 인프라의 모든 정보가 평문(Plain text)으로 저장됩니다. DB 비밀번호 등의 민감 정보도 포함될 수 있으므로, State 버킷은 절대적으로 접근을 제한하고 암호화해야 합니다.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <a href="iac_foundations.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="iac_modules.html" class="btn btn-primary">다음 단계: 3. Infrastructure Modules <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="iac_modules.html" class="btn btn-primary">다음 단계: 3. 리소스 모듈화 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

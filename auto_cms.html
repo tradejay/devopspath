@@ -3,35 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Headless CMS - DevOps Roadmap</title>
+    <title>Headless CMS Integration - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .info-box {
-            background: rgba(139, 92, 246, 0.1);
-            border-left: 4px solid var(--accent-purple);
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -40,51 +14,75 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html" class="active"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="automation.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 자동화 목록으로 돌아가기
             </a>
             <span class="badge progress">Deep Dive 2</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Headless CMS: 콘텐츠 관리</h1>
-            <p class="page-subtitle">코드 수정 없이 마케터가 브라우저에서 글을 관리하는 방법</p>
+            <h1 class="page-title" style="margin-top: 1rem;">Headless CMS Integration</h1>
+            <p class="page-subtitle">노션(Notion)을 백엔드로 사용하여 누구나 쉽게 콘텐츠를 관리하기</p>
         </div>
 
         <section class="content-section">
-            <h2>1. Headless CMS란?</h2>
-            <p>
-                전통적인 CMS(WordPress 등)가 화면(Head)과 데이터 처리를 하나로 묶어두었다면, **Headless CMS**는 머리(화면)를 떼어내고 오직 **콘텐츠 데이터만 API**로 제공합니다. 
-                개발자는 원하는 프레임워크로 자유롭게 화면을 그리고, 마케터는 편리한 관리자 화면에서 글만 쓰면 되는 구조입니다.
-            </p>
-
-            <div class="info-box">
-                <h3 style="color: var(--accent-cyan);">대표적인 도구들</h3>
-                <ul>
-                    <li><strong>Contentful:</strong> 엔터프라이즈 레벨의 안정성과 강력한 API 제공.</li>
-                    <li><strong>Ghost:</strong> 블로그 포스팅에 최적화된 사용자 인터페이스.</li>
-                    <li><strong>Strapi:</strong> 오픈소스로 직접 설치하여 사용할 수 있는 자유도 높은 CMS.</li>
-                </ul>
+            <h2>1. 왜 Headless CMS인가?</h2>
+            <p>전통적인 CMS(워드프레스 등)는 화면과 데이터가 결속되어 있어 수정이 어렵습니다. Headless CMS는 **"화면(Head)이 없는 데이터 저장소"**로, API를 통해 데이터를 제공하기만 합니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>Notion as a CMS</h3>
+                <p>개발자뿐만 아니라 비개발자도 익숙하게 사용하는 Notion을 데이터베이스로 활용할 수 있습니다. Notion API를 통해 문서 내용을 JSON으로 가져와 블로그에 뿌려주는 모델입니다.</p>
             </div>
 
-            <h2>2. 개발자와 마케터의 협업 모델</h2>
-            <p>
-                이 구조를 도입하면 개발자는 더 이상 "이 글 좀 수정해 주세요"라는 마케팅 팀의 요청을 받지 않아도 됩니다. 
-                마케터가 CMS에서 글을 수정하고 '발행' 버튼을 누르는 순간, 시스템이 자동으로 이를 감지하기 때문입니다.
-            </p>
+            <h2>2. 데이터 흐름 설계</h2>
+            <ul>
+                <li><strong>Content Creation:</strong> 사용자가 Notion 페이지에서 글을 작성합니다.</li>
+                <li><strong>API Fetch:</strong> 빌드 타임에 Notion API가 페이지 목록과 본문(Block) 데이터를 가져옵니다.</li>
+                <li><strong>Parsing:</strong> Notion 특유의 데이터 형식을 HTML로 변환합니다.</li>
+                <li><strong>Rendering:</strong> Next.js 같은 프레임워크가 변환된 HTML을 정적 페이지로 굽습니다.</li>
+            </ul>
+
+            <div class="code-block">
+                <pre><code># Notion Client 연동 예시
+const { Client } = require("@notionhq/client")
+
+const notion = new Client({ auth: process.env.NOTION_KEY })
+
+async function getBlogPosts() {
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID,
+    filter: { property: "Status", select: { equals: "Published" } }
+  })
+  return response.results
+}</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>실무 팁: 마크다운 변환기 활용</h3>
+                <p>Notion 데이터를 직접 처리하는 것은 복잡하므로, `notion-to-md` 같은 라이브러리를 사용하여 마크다운으로 먼저 변환한 뒤 렌더링하는 소트웨어를 구축하세요. 유지보수가 훨씬 쉬워집니다.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <a href="auto_ssg.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="auto_webhooks.html" class="btn btn-primary">다음 단계: 3. Webhooks & Triggers <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="auto_webhooks.html" class="btn btn-primary">다음 단계: 3. 이벤트 기반 자동화 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

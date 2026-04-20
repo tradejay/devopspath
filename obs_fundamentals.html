@@ -3,35 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관측 가능성 기초 - DevOps Roadmap</title>
+    <title>관측성의 3요소 (M.L.T) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .info-box {
-            background: rgba(6, 182, 212, 0.1);
-            border-left: 4px solid var(--accent-cyan);
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 2rem 0;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -40,52 +14,70 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html" class="active"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="observability.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 모니터링 목록으로 돌아가기
             </a>
             <span class="badge progress">Deep Dive 1</span>
-            <h1 class="page-title" style="margin-top: 1rem;">관측 가능성(Observability) 기초</h1>
-            <p class="page-subtitle">단순한 모니터링을 넘어 시스템의 "왜"를 질문하기</p>
+            <h1 class="page-title" style="margin-top: 1rem;">관측성의 3요소 (M.L.T)</h1>
+            <p class="page-subtitle">시스템의 건강 상태를 입체적으로 분석하는 세 가지 데이터 시각</p>
         </div>
 
         <section class="content-section">
-            <h2>1. 모니터링 vs 관측 가능성</h2>
-            <p>
-                **모니터링**은 "시스템이 정상인가?"(Known-Unknowns)를 확인하는 과정입니다. 대시보드를 보고 빨간불이 들어오면 장애임을 인지하는 수준이죠. 
-                반면 **관측 가능성**은 "왜 시스템이 이런 상태가 되었나?"(Unknown-Unknowns)를 추적하는 능력입니다. 사전에 정의하지 않은 복잡한 문제도 데이터만 보고 원인을 파악할 수 있어야 합니다.
-            </p>
-
-            <div class="info-box">
-                <h3 style="color: var(--accent-cyan);">전문가의 시각: Cardinality & Dimensionality</h3>
-                <p>좋은 Observability 시스템은 높은 카디널리티(사용자 ID 하나하나를 구분할 수 있는 힘)를 가집니다. 특정 유저 1명에게만 발생하는 에러를 찾아낼 수 있는지가 실력의 척도입니다.</p>
-            </div>
-
-            <h2>2. 관측 가능성의 3대 기둥 (The Three Pillars)</h2>
-            <p>시스템을 투명하게 들여다보기 위한 3가지 도구입니다.</p>
+            <h2>1. 관측성(Observability)의 핵심 기둥</h2>
+            <p>단순히 서비스가 동작하는지 확인하는 수준을 넘어, 왜 문제가 발생했는지 추론할 수 있는 데이터를 수집해야 합니다.</p>
             <ul>
-                <li><strong>Metrics (지표):</strong> 숫자로 표현된 데이터 (예: CPU 사용률, 응답 시간). 추세 파악과 알림에 용이합니다.</li>
-                <li><strong>Logs (로그):</strong> 특정 시점에 발생한 이벤트 기록. "무슨 일"이 일어났는지 상세히 알려줍니다.</li>
-                <li><strong>Traces (추적):</strong> 요청 하나가 여러 서버를 거쳐가는 경로. 마이크로서비스 환경에서 병목 지점을 찾는데 필수입니다.</li>
+                <li><strong>Metrics (지표):</strong> 시간 경과에 따른 숫자 데이터. 아그리게이션과 대시보드에 최적화. (예: CPU 사용량, TPS)</li>
+                <li><strong>Logs (기록):</strong> 특정 시점에 발생한 이벤트의 상세 내용. 디버깅의 핵심. (예: 에러 스택 트레이스)</li>
+                <li><strong>Traces (추적):</strong> 요청 하나가 여러 서비스를 통과하는 여정. 분산 아키텍처의 필수 요소.</li>
             </ul>
 
-            <h2>3. 실습 가이드</h2>
-            <p>본인의 서비스에 **Sentry**를 연동해 보세요. 단순 에러 로그만 쌓는 것이 아니라, 에러가 발생했을 당시의 **사용자 컨텍스트(User Context)**를 함께 남기는 것이 Observability의 시작입니다.</p>
+            <div class="info-box cyan">
+                <h3>왜 세 가지가 모두 필요한가?</h3>
+                <p>지표(Metrics)는 문제가 발생했음을 알려주고(Detection), 추적(Traces)은 어느 구간에서 문제가 생겼는지 짚어주며(Isolation), 로그(Logs)는 구체적으로 어떤 에러인지 알려줍니다(Identification).</p>
+            </div>
+
+            <h2>2. Modern Observability 아키텍처</h2>
+            <p>최근에는 이 세 가지를 개별적으로 관리하지 않고, 통합된 표준(OpenTelemetry)으로 수집하는 것이 대세입니다.</p>
+            
+            <div class="code-block">
+                <pre><code># 도식화: 데이터의 흐름
+[ Application ] --- (Pull/Push) ---> [ Telemetry Collector ]
+                                            |
+        -----------------------------------------------------
+        |                   |                       |
+[ Prometheus ]         [ Graylog/Loki ]         [ Jaeger/Tempo ]
+  (Metrics)               (Logs)                  (Traces)</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>실무 조언: 상관관계(Correlation)가 전부다</h3>
+                <p>지표에서 나타난 에러 스파이크를 클릭했을 때 바로 해당 시점의 로그와 트레이스로 연결되지 않는다면, 그것은 진정한 관측성이 아닙니다. 각각의 데이터에 `trace_id`와 같은 고유 식별자를 태깅하세요.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <span></span>
-            <a href="obs_metrics_golden.html" class="btn btn-primary">다음 단계: 2. Golden Signals <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="obs_metrics_golden.html" class="btn btn-primary">다음 단계: 2. Metrics 고도화 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>

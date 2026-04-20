@@ -3,43 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>예약 빌드와 스케줄링 - DevOps Roadmap</title>
+    <title>Automation Scheduling - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .content-section {
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
-        .content-section h2 {
-            font-family: 'Outfit', sans-serif;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: 1rem;
-        }
-        .content-section p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-        .code-block {
-            background: #0d1117;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            border: 1px solid var(--border-light);
-            overflow-x: auto;
-        }
-        .code-block pre {
-            margin: 0;
-            color: #c9d1d9;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -48,61 +14,74 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
-            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="iac.html" class="active"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html" class="active"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
             <a href="automation.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
-                <i class="fa-solid fa-arrow-left"></i> 목록으로 돌아가기
+                <i class="fa-solid fa-arrow-left"></i> 자동화 목록으로 돌아가기
             </a>
             <span class="badge progress">Deep Dive 4</span>
-            <h1 class="page-title" style="margin-top: 1rem;">Scheduled Updates: 자동 업데이트</h1>
-            <p class="page-subtitle">정해진 시간에 외부 데이터를 수집하고 블로그를 갱신하는 비결</p>
+            <h1 class="page-title" style="margin-top: 1rem;">Automation Scheduling</h1>
+            <p class="page-subtitle">귀찮은 반복 작업을 서버가 스스로 정해진 시간에 처리하게 하기</p>
         </div>
 
         <section class="content-section">
-            <h2>1. Cron Job의 부활</h2>
-            <p>
-                웹훅이 '사건'에 반응한다면, **Cron**은 '시간'에 반응합니다. 
-                예를 들어 "매일 새벽 3시에 주식 시장 데이터를 수집해서 블로그 리포트를 써줘" 같은 작업은 크론이 처리합니다.
-            </p>
-
-            <h2>2. GitHub Actions Schedule 활용</h2>
-            <p>
-                별도의 서버를 띄우지 않고도 GitHub Actions의 `schedule` 이벤트를 쓰면 무료로 정기 빌드를 수행할 수 있습니다.
-            </p>
-
-            <div class="code-block">
-                <pre><code># .github/workflows/daily-report.yml
-on:
-  schedule:
-    - cron: '0 0 * * *' # 매일 자정(UTC 0시) 실행
-
-jobs:
-  report:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fetch Data and Trigger Build
-        run: curl -X POST https://api.vercel.com/v1/integrations/deploy/...</code></pre>
+            <h2>1. 스케줄링(Scheduling)의 개요</h2>
+            <p>모든 자동화가 이벤트 트리거(Webhooks)일 필요는 없습니다. 데이터 백업, 뉴스레터 발송, 이미지 최적화 같은 작업은 정기적으로(예: 매일 자정) 수행되는 것이 좋습니다.</p>
+            
+            <div class="info-box cyan">
+                <h3>GitHub Actions Cron</h3>
+                <p>별도의 서버를 운영할 필요 없이 GitHub Actions의 `schedule` 이벤트를 사용하면 서버리스 방식으로 주기적인 작업을 실행할 수 있습니다.</p>
             </div>
 
-            <h2>3. 실무에서의 활용: 백데이터 자동화</h2>
-            <p>
-                사용자님의 서비스 운영 데이터(주간 방문자 수, 인기 글 등)를 매주 월요일 아침에 자동으로 요약해서 마케팅 페이지에 반영해보세요. 
-                사람의 손을 타지 않고도 살아 숨 쉬는 블로그를 운영하는 비법입니다.
-            </p>
+            <h2>2. Cron 표현식 마스터하기</h2>
+            <p>작업 실행 주기를 설정할 때 표준 Cron 문법을 사용합니다.</p>
+            <div class="code-block">
+                <pre><code># ┌───────────── 분 (0 - 59)
+# │ ┌─────────── 시 (0 - 23)
+# │ │ ┌───────── 일 (1 - 31)
+# │ │ │ ┌─────── 월 (1 - 12)
+# │ │ │ │ ┌───── 요일 (0 - 6) (일요일=0)
+# │ │ │ │ │
+# * * * * *
+
+# 사례 1: 매일 새벽 4시에 실행 (0 4 * * *)
+# 사례 2: 매주 월요일 정오에 실행 (0 12 * * 1)</code></pre>
+            </div>
+
+            <h2>3. 주요 자동화 사례</h2>
+            <ul>
+                <li><strong>Dynamic Sitemap:</strong> 매일 새로운 포스트가 추가되었는지 확인하고 사이트맵 재생성.</li>
+                <li><strong>Broken Link Check:</strong> 매주 블로그 내부에 깨진 링크가 있는지 전수 조사.</li>
+                <li><strong>Auto Cleanup:</strong> 임시 빌드 아티팩트나 30일이 지난 로그 자동 삭제.</li>
+            </ul>
+
+            <div class="info-box green">
+                <h3>실무 조언: 시간대에 주의하세요</h3>
+                <p>대부분의 클라우드 자동화 도구(GitHub Actions 등)는 기본 시간이 **UTC**입니다. 한국 시간(KST)으로 새벽 4시에 실행하고 싶다면 9시간을 뺀 이전 날 오후 7시(19:00 UTC)로 설정해야 함을 명심하세요.</p>
+            </div>
         </section>
 
         <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
             <a href="auto_webhooks.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
-            <a href="auto_cdn.html" class="btn btn-primary">다음 단계: 5. Global Delivery <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="auto_cdn.html" class="btn btn-primary">다음 단계: 5. CDN 최적화 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </main>
 </body>
