@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K8s 아키텍처 기초 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html" class="active"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="k8s.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> Kubernetes 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 1</span>
+            <h1 class="page-title" style="margin-top: 1rem;">K8s 아키텍처 기초</h1>
+            <p class="page-subtitle">Control Plane과 Worker Node의 조화, 그리고 원하는 상태(Desired State)의 이해</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. Control Plane vs Worker Node</h2>
+            <p>쿠버네티스 클러스터는 크게 명령을 내리는 **Control Plane(두뇌)**과 실제 컨테이너가 돌아가는 **Worker Node(몸체)**로 나뉩니다.</p>
+            <div class="info-box cyan">
+                <h3>원칙: Desired State (원하는 상태)</h3>
+                <p>"컨테이너 3개를 유지해줘"라고 선언하면, K8s는 누군가 죽더라도 다시 살려서 항상 3개를 유지합니다. 이것이 K8s 운영의 핵심 철학입니다.</p>
+            </div>
+
+            <h2>2. 핵심 오브젝트 3단계 계층</h2>
+            <p>컨테이너를 효율적으로 관리하기 위해 K8s는 다음과 같은 추상화 계층을 사용합니다.</p>
+            <ul>
+                <li><strong>Pod:</strong> K8s에서 배포할 수 있는 가장 작은 단위. 하나 이상의 컨테이너를 포함함.</li>
+                <li><strong>ReplicaSet:</strong> 지정된 수의 Pod가 항상 실행되도록 보장함.</li>
+                <li><strong>Deployment:</strong> Pod와 ReplicaSet의 배포를 관리하며, 롤링 업데이트와 같은 기능을 제공함.</li>
+            </ul>
+
+            <div class="code-block">
+                <pre><code># 아키텍처 확인을 위한 기초 명령어
+kubectl get nodes        # 노드 상태 확인
+kubectl get pods -A      # 모든 네임스페이스의 포드 확인
+kubectl describe node [이름]  # 특정 노드의 상세 정보 확인</code></pre>
+            </div>
+
+            <div class="info-box yellow">
+                <h3>주의: Pod를 직접 생성하지 마세요</h3>
+                <p>Deployment 없이 직접 생성한 Pod는 노드에 장애가 발생했을 때 자동으로 복구되지 않습니다. 항상 상위 컨트롤러(Deployment)를 통해 생성해야 합니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <span></span>
+            <a href="k8s_manifests.html" class="btn btn-primary">다음 단계: 2. 선언형 매니페스트 설계 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

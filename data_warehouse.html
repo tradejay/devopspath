@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>분석 매체 (Warehouse vs Lakehouse) - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html" class="active"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="data.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> 데이터 엔지니어링 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 2</span>
+            <h1 class="page-title" style="margin-top: 1rem;">분석 매체 (Warehouse vs Lakehouse)</h1>
+            <p class="page-subtitle">데이터의 규모와 성격에 최적화된 저장공간 선택하기</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. Modern Data Storage 비교</h2>
+            <table>
+                <tr>
+                    <th style="padding: 1rem; border-bottom: 1px solid var(--border-light); text-align: left;">구분</th>
+                    <th style="padding: 1rem; border-bottom: 1px solid var(--border-light); text-align: left;">특징</th>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">Data Warehouse</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">정형 데이터 중심. 초고성능 SQL 분석 최적화. (Snowflake, BigQuery)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">Data Lake</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">비정형 데이터 포함. 저렴한 비용으로 대량 저장. (S3 + Athena)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem;">Data Lakehouse</td>
+                    <td style="padding: 1rem;">레이크의 저렴한 비용 + 웨어하우스의 관리 기능 통합. (Databricks, Iceberg)</td>
+                </tr>
+            </table>
+
+            <div class="info-box cyan">
+                <h3>dbt (data build tool): 분석가도 엔지니어처럼</h3>
+                <p>SQL만으로 데이터 변환(Transform) 과정을 작성하고, 이를 버전 관리 및 문서화할 수 있게 돕는 도구입니다. '데이터 분석의 엔지니어링화'를 주도하고 있습니다.</p>
+            </div>
+
+            <h2>2. 대용량 쿼리 최적화 기법</h2>
+            <ul>
+                <li><strong>Partitioning:</strong> 날짜나 키 값으로 데이터를 물리적으로 쪼개어 스캔 범위를 줄임.</li>
+                <li><strong>Clustering:</strong> 자주 같이 조회되는 컬럼끼리 모아서 저장.</li>
+                <li><strong>Columnar Storage:</strong> 행이 아닌 열(Column) 단위로 저장하여 분석 쿼리 속도 극대화. (Snappy, Parquet)</li>
+            </ul>
+
+            <div class="info-box green">
+                <h3>실무 조언: 인프라 분어</h3>
+                <p>데이터 웨어하우스는 컴퓨팅 비용이 비쌉니다. 무분별한 `SELECT *`를 막고, 쿼리 비용을 실시간으로 태깅하여 팀별로 비용을 배분(Showback)하는 것이 핀옵스와 연결되는 지점입니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="data_pipeline.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="data_governance.html" class="btn btn-primary">다음 단계: 3. 데이터 거버넌스 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

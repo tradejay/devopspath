@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Mesh 표준 (SMI) - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html" class="active"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="mesh.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> Service Mesh 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 5</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Service Mesh 표준 (SMI)</h1>
+            <p class="page-subtitle">다양한 서비스 메쉬 솔루션과 업계 표준 인터페이스</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 다양한 서비스 메쉬 솔루션</h2>
+            <p>Istio가 가장 강력한 기능을 제공하지만, 환경에 따라 더 가벼운 대안이 필요할 수 있습니다.</p>
+            <ul>
+                <li><strong>Linkerd:</strong> Rust로 작성된 초경량 서비스 메쉬. 속도와 간결함이 강점.</li>
+                <li><strong>Consul:</strong> 해시코프 생태계와의 통합이 뛰어난 대안.</li>
+                <li><strong>Cilium:</strong> eBPF 기술을 활용하여 사이드카 없이도 트래픽을 제어하는 차세대 메쉬.</li>
+            </ul>
+
+            <div class="info-box cyan">
+                <h3>SMI (Service Mesh Interface)</h3>
+                <p>다양한 서비스 메쉬 도구들을 공통된 방식으로 제어하기 위한 표준 사양입니다. 특정 도구에 종속되지 않는 운영을 돕습니다.</p>
+            </div>
+
+            <h2>2. 어떤 솔루션을 선택해야 하나?</h2>
+            <table>
+                <tr>
+                    <th style="padding: 1rem; border-bottom: 1px solid var(--border-light); text-align: left;">기준</th>
+                    <th style="padding: 1rem; border-bottom: 1px solid var(--border-light); text-align: left;">추천</th>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">풍부한 기능/커스텀</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">Istio</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">낮은 리소스/성능</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">Linkerd</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem;">성능 극대화 (사이드카 없음)</td>
+                    <td style="padding: 1rem;">Cilium</td>
+                </tr>
+            </table>
+
+            <div class="info-box green">
+                <h3>최종 정리: 점진적 도입</h3>
+                <p>처음부터 모든 기능을 켜는 대신, mTLS를 통한 보안 강화부터 시작해서 차근차근 트래픽 제어와 관측성으로 확장하는 것이 성공 확률을 높이는 길입니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="mesh_observability.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="finops.html" class="btn btn-primary">다음 챕터: 10. FinOps <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고급 트래픽 제어 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html" class="active"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="mesh.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> Service Mesh 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 2</span>
+            <h1 class="page-title" style="margin-top: 1rem;">고급 트래픽 제어</h1>
+            <p class="page-subtitle">VirtualService와 DestinationRule을 이용한 세밀한 요청 라우팅</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 라우팅 분리 (VirtualService)</h2>
+            <p>쿠버네티스 서비스가 단순히 '어디로 갈지'를 정한다면, Istio의 VirtualService는 '어떤 조건에서 어디로 갈지'를 결정합니다.</p>
+            <div class="info-box cyan">
+                <h3>실전 예시: 카나리 배포 (Canary)</h3>
+                <p>전체 트래픽의 90%는 기존 버전(v1)으로, 10%는 신규 버전(v2)으로 보내서 안전하게 테스트할 수 있습니다.</p>
+            </div>
+
+            <h2>2. 서킷 브레이킹 (Circuit Breaking)</h2>
+            <p>특정 서비스에 장애가 발생해 응답이 지연되면, 해당 서비스로의 요청을 즉시 차단하여 연쇄 장애(Cascading Failure)를 방지합니다.</p>
+
+            <div class="code-block">
+                <pre><code># VirtualService 예시 (90/10 가중치 배포)
+spec:
+  hosts:
+  - my-service
+  http:
+  - route:
+    - destination:
+        host: my-service
+        subset: v1
+      weight: 90
+    - destination:
+        host: my-service
+        subset: v2
+      weight: 10</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>트래픽 미러링 (Shadowing)</h3>
+                <p>운영 환경에 영향을 주지 않고, 실제 트래픽을 신규 버전으로 복사해서 보내어 결과값만 비동기로 검증할 수 있습니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="mesh_istio.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="mesh_security.html" class="btn btn-primary">다음 단계: 3. 제로 트러스트 보안 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

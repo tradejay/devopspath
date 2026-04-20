@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카오스 엔지니어링 실습 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html" class="active"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="sre.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> SRE 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 5</span>
+            <h1 class="page-title" style="margin-top: 1rem;">카오스 엔지니어링 실습</h1>
+            <p class="page-subtitle">시스템에 고의로 고통을 주어 더 튼튼한 아키텍처 만들기</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 카오스 엔지니어링이란?</h2>
+            <p>프로덕션 환경의 변동성을 견딜 수 있는 시스템의 능력에 대한 신뢰를 구축하기 위해 실험을 수행하는 규율입니다.</p>
+            <div class="info-box cyan">
+                <h3>원칙: 가설 기반 실험</h3>
+                <p>"DB 연결이 끊겨도 사용자에게는 캐시된 데이터가 보일 것이다"라는 가설을 세우고, 실제로 DB 연결을 끊어보는 실험을 수행합니다.</p>
+            </div>
+
+            <h2>2. 실험의 주요 단계</h2>
+            <ol>
+                <li><strong>정상 상태(Steady State) 정의:</strong> 시스템이 정상일 때의 지표(예: 에러율 1% 미만).</li>
+                <li><strong>가설 수립:</strong> 특정 장애가 발생해도 정상 상태가 유지될 것이라는 믿음.</li>
+                <li><strong>변수 도입:</strong> 서버 다운, 네트워크 지연, 리 소스 고갈 등 실제 장애 주입.</li>
+                <li><strong>영향 분석:</strong> 정상 상태가 깨졌는지 확인하고 취약점 파악.</li>
+            </ol>
+
+            <div class="code-block">
+                <pre><code># Chaos Mesh를 이용한 네트워크 지연 주입 예시
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-delay
+spec:
+  action: delay
+  mode: one
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      'app': 'web'
+  delay:
+    latency: '100ms'
+    correlation: '100'</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>안전 장치: 폭발 반경(Blast Radius) 최소화</h3>
+                <p>처음부터 전체 운영 환경에 장애를 주입해서는 안 됩니다. 소수의 사용자에게만 영향을 주는 범위에서 시작하여 점진적으로 확대하세요. 또한, 즉시 실험을 중단하고 복구할 수 있는 '비상 중단 버튼'이 항상 있어야 합니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="sre_oncall.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="mlops.html" class="btn btn-primary">다음 챕터: 12. MLOps <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실험 추적 (MLflow) - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="mlops.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> MLOps 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 3</span>
+            <h1 class="page-title" style="margin-top: 1rem;">실험 추적 (MLflow)</h1>
+            <p class="page-subtitle">수천 번의 모델 학습 이력을 일관된 포맷으로 기록하고 관리하기</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 왜 실험 추적이 필요한가?</h2>
+            <p>모델 성능을 올리기 위해 데이터 과학자는 끊임없이 하이퍼파라미터를 바꿉니다. 이를 엑셀이나 메모장에 적는 것은 한계가 있으며, 나중에 '어떤 설정일 때 가장 잘 나왔는지' 찾기 힘듭니다.</p>
+            <div class="info-box cyan">
+                <h3>MLflow Tracking</h3>
+                <p>코드 한 줄로 학습 시 사용한 파라미터, 성능 지표(Accuracy, Loss), 손실 그래프 등을 중앙 서버에 자동으로 기록합니다.</p>
+            </div>
+
+            <h2>2. 핵심 기능 3가지</h2>
+            <ul>
+                <li><strong>Tracking:</strong> 코드 실행 결과 기록 및 시각화.</li>
+                <li><strong>Projects:</strong> 재사용 가능한 데이터 과학 코드 패키징.</li>
+                <li><strong>Models:</strong> 다양한 라이브러리(PyTorch, TensorFlow 등)로 만든 모델을 표준 형식으로 저장.</li>
+            </ul>
+
+            <div class="code-block">
+                <pre><code># MLflow 코드 예시
+import mlflow
+
+with mlflow.start_run():
+    mlflow.log_param("learning_rate", 0.01)
+    mlflow.log_metric("accuracy", 0.95)
+    mlflow.log_artifact("model.h5") # 실제 모델 파일 저장</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>운영 팁: 대시보드 활용</h3>
+                <p>MLflow 대시보드에서 여러 실험들을 한눈에 비교(Compare)하고, 성능이 가장 좋은 가중치를 클릭 한 번으로 '운영(Production)' 단계로 승격시킬 수 있습니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="mlops_data_versioning.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="mlops_serving.html" class="btn btn-primary">다음 단계: 4. 모델 서빙 & 파이프라인 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

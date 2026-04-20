@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온콜 & 토일(Toil) 관리 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="sre.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> SRE 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 4</span>
+            <h1 class="page-title" style="margin-top: 1rem;">온콜 & 토일(Toil) 관리</h1>
+            <p class="page-subtitle">엔지니어의 번아웃을 막고 의미 있는 일에 집중하는 환경 구축</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 온콜(On-call)의 건강한 운영</h2>
+            <p>24시간 장애에 대응해야 하는 온콜은 엔지니어에게 가장 큰 부담입니다. 이를 지속 가능하게 만들어야 합니다.</p>
+            <div class="info-box cyan">
+                <h3>원칙: 보상과 오버랩</h3>
+                <ul>
+                    <li>적절한 온콜 수당 또는 휴가 보상.</li>
+                    <li>Primary/Secondary 체제로 백업 인력 확보.</li>
+                    <li>주간 업무 시간 중 장애 대응 이력을 정리할 시간 보장.</li>
+                </ul>
+            </div>
+
+            <h2>2. 토일(Toil)이란 무엇인가?</h2>
+            <p>Toil은 **'인간이 수행하는 수동적, 반복적, 전술적 업무'**를 뜻합니다. 예: 수동 계정 생성, 매일 아침 수동 리포트 작성 등.</p>
+            <div class="info-box yellow">
+                <h3>SRE의 계명: Toil을 50% 이하로 유지하라</h3>
+                <p>Google SRE는 전체 업무의 50% 이상이 Toil이 되지 않도록 강제합니다. 나머지 50%는 반드시 이 Toil을 없애기 위한 '자동화 코딩'에 써야 합니다.</p>
+            </div>
+
+            <h2>3. 자동화의 단계</h2>
+            <ol>
+                <li><strong>수동 수행:</strong> 티켓을 받고 사람이 작업. (고비용)</li>
+                <li><strong>스크립트화:</strong> 사람이 실행하지만 과정은 코드로 작성.</li>
+                <li><strong>자가 서비스(Self-service):</strong> 사용자가 직접 버튼을 눌러 실행.</li>
+                <li><strong>완전 자동화:</strong> 시스템이 조건을 감지하고 스스로 실행. (저비용, 고속)</li>
+            </ol>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="sre_incident.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="sre_chaos.html" class="btn btn-primary">다음 단계: 5. 카오스 엔지니어링 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

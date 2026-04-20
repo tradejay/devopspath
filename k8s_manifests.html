@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선언형 매니페스트 설계 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html" class="active"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="k8s.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> Kubernetes 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 2</span>
+            <h1 class="page-title" style="margin-top: 1rem;">선언형 매니페스트 설계</h1>
+            <p class="page-subtitle">YAML 파일로 정의하는 클러스터의 상태, 그리고 kubectl apply의 마법</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 명령형 vs 선언형 비교</h2>
+            <p>쿠버네티스는 CLI로 직접 명령을 내리는 방식(명령형)보다 파일로 상태를 정의하는 방식(선언형)을 선호합니다.</p>
+            <table>
+                <tr>
+                    <th style="padding: 1rem; border-bottom: 1px solid var(--border-light); text-align: left;">방식</th>
+                    <th style="padding: 1rem; border-bottom: 1px solid var(--border-light); text-align: left;">특징</th>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">명령형 (kubectl run)</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid var(--border-light);">빠르지만 재현이 불가능하고 기록이 남지 않음.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem;">선언형 (kubectl apply)</td>
+                    <td style="padding: 1rem;">버전 관리가 가능하고 팀원들과 동일한 상태를 공유할 수 있음.</td>
+                </tr>
+            </table>
+
+            <h2>2. Label과 Selector의 작동 원리</h2>
+            <div class="info-box cyan">
+                <h3>Pro's Tip: Label은 필터입니다</h3>
+                <p>K8s 리소스 간의 연결은 이름이 아니라 '라벨'을 통해 이루어집니다. 서비스가 특정 포드에게 트래픽을 보내는 것도 라벨 셀렉터 덕분입니다.</p>
+            </div>
+
+            <h2>3. 실전 Deployment YAML 템플릿</h2>
+            <div class="code-block">
+                <pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>체크리스트: Production용 YAML</h3>
+                <ul>
+                    <li>Resource requests/limits가 설정되어 있는가?</li>
+                    <li>적절한 Label이 부여되었는가?</li>
+                    <li>Selector와 Template Label이 일치하는가?</li>
+                </ul>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="k8s_architecture.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="k8s_networking.html" class="btn btn-primary">다음 단계: 3. 서비스 디스커버리 & 네트워킹 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

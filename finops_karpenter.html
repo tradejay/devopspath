@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K8s 지능형 스케일링 (Karpenter) - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html" class="active"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="finops.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> FinOps 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 4</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Karpenter 도입 및 운영</h1>
+            <p class="page-subtitle">워크로드에 딱 맞는 노드를 10초 만에 프로비저닝하기</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. Cluster Autoscaler의 한계</h2>
+            <p>기존의 CAS(Cluster Autoscaler)는 사전에 정의된 '노드 그룹' 내에서만 개수를 늘립니다. 이는 리소스 낭비가 심하고 유연성이 떨어집니다.</p>
+            <div class="info-box cyan">
+                <h3>차세대 스케일러: Karpenter</h3>
+                <p>AWS에서 개발한 Karpenter는 노드 그룹 없이, 현재 배포 대기 중인(Pending) 포드의 요구사항(CPU, 메모리, Zone 등)을 분석하여 가장 저렴하고 최적화된 인스턴스를 즉석에서 생성합니다.</p>
+            </div>
+
+            <h2>2. Karpenter의 주요 이점</h2>
+            <ul>
+                <li><strong>빠른 속도:</strong> EC2 플릿 API를 직접 호출하여 노드 추가 속도가 매우 빠름.</li>
+                <li><strong>비용 최적화:</strong> Spot 인스턴스 비율을 극대화하고, 빈 공간이 많은 노드를 자동으로 통합(Consolidation)함.</li>
+                <li><strong>유연성:</strong> 매번 노드 그룹 설정을 바꿀 필요 없이 태그 기반으로 인스턴스 타입을 동적 선택.</li>
+            </ul>
+
+            <div class="code-block">
+                <pre><code># Karpenter Provisioner 설정 예시
+spec:
+  requirements:
+    - key: "karpenter.sh/capacity-type"
+      operator: In
+      values: ["spot"] # Spot 우선 사용
+    - key: "kubernetes.io/arch"
+      operator: In
+      values: ["arm64", "amd64"] # 가성비 좋은 Graviton 노드 포함</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>실전 팁: Bin-packing</h3>
+                <p>Karpenter는 노드들을 꽉꽉 채워 씁니다. 만약 리소스가 남는 노드가 있다면 포드들을 다른 노드로 몰아넣고 남는 노드를 즉시 반납합니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="finops_spot.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="finops_culture.html" class="btn btn-primary">다음 단계: 5. FinOps 문화 구축 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

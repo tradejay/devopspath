@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 거버넌스 & 보안 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html" class="active"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="data.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> 데이터 엔지니어링 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 3</span>
+            <h1 class="page-title" style="margin-top: 1rem;">데이터 거버넌스 & 보안</h1>
+            <p class="page-subtitle">데이터의 투명성 확보와 안전한 접근 통제 전략</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 데이터 거버넌스란?</h2>
+            <p>데이터가 어디서 오는지(Lineage), 누가 쓰고 있는지(Audit), 어떤 정의를 가졌는지(Catalog)를 정립하여 신뢰할 수 있는 데이터 자산을 유지하는 활동입니다.</p>
+            <div class="info-box cyan">
+                <h3>주요 도구: Atlas, Amundsen</h3>
+                <p>데이터 카탈로그 도구를 사용하여 전사 직원이 '어떤 테이블이 어떤 의미인가?'를 쉽게 찾을 수 있도록 돕습니다.</p>
+            </div>
+
+            <h2>2. 개인정보 보호 (Privacy)</h2>
+            <p>데이터 레이크에 쌓이는 수많은 정보 중 개인 식별 정보(PII)를 철저히 관리해야 합니다.</p>
+            <ul>
+                <li><strong>Data Masking:</strong> 이름, 전화번호 뒷자리를 별표(*) 처리.</li>
+                <li><strong>Encryption:</strong> 저장 시 암호화(At rest) 및 전송 시 암호화(In transit).</li>
+                <li><strong>TTL (Time to Live):</strong> 분석에 더 이상 필요 없는 개인 정보는 일정 기간 뒤 자동 삭제.</li>
+            </ul>
+
+            <div class="info-box yellow">
+                <h3>보안 원칙: RBAC 기반 접근 제어</h3>
+                <p>데이터 엔지니어라고 해서 모든 사용자 정보를 다 볼 필요는 없습니다. 업무에 꼭 필요한 범위의 데이터만 접근할 수 있도록 세밀한(Fine-grained) 권한 관리가 필수적입니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="data_warehouse.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="data_quality.html" class="btn btn-primary">다음 단계: 4. 데이터 품질 관리 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

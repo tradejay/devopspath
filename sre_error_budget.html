@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에러 예산 (Error Budget) - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="sre.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> SRE 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 2</span>
+            <h1 class="page-title" style="margin-top: 1rem;">에러 예산 (Error Budget)</h1>
+            <p class="page-subtitle">안정성과 혁신 속도의 균형을 맞추는 엔지니어링 도구</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 에러 예산이란?</h2>
+            <p>SLO가 99.9%라면, 나머지 0.1%(에러 예산)는 시스템이 허용하는 장애의 양입니다. 예: 월간 약 43분의 장애 시간.</p>
+            <div class="info-box cyan">
+                <h3>혁신의 원동력</h3>
+                <p>에러 예산이 남아있다면, 리스크를 감수하고 새로운 코드를 과감하게 배포할 수 있습니다. 반대로 예산이 바닥났다면 모든 배포를 멈추고 시스템 안정화에만 집중해야 합니다.</p>
+            </div>
+
+            <h2>2. 예산 운영 정책</h2>
+            <ul>
+                <li><strong>남은 예산 소진:</strong> 카나리 배포 확대, 실험적인 실험 수행.</li>
+                <li><strong>예산 고갈 시:</strong> 운영 환경 배포 중단, 포스트모템(Post-mortem) 수행, 코드 리뷰 강화.</li>
+                <li><strong>예산 리셋:</strong> 매달 또는 분기별로 초기화하거나 롤링 윈도우 방식으로 운영.</li>
+            </ul>
+
+            <div class="info-box yellow">
+                <h3>주의: 예산은 '벌칙'이 아닙니다</h3>
+                <p>에러 예산은 개발 팀을 혼내기 위한 것이 아니라, 안정성에 대한 합의된 기준을 제공하여 운영 팀과 개발 팀 사이의 소모적인 갈등을 줄이는 '방패' 역할을 합니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="sre_sls.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="sre_incident.html" class="btn btn-primary">다음 단계: 3. 장애 대응 프로세스 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitOps 4대 핵심 원칙 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <!-- Sidebar omitted for brevity in thought, but included in actual file -->
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html" class="active"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="gitops.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> GitOps 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 1</span>
+            <h1 class="page-title" style="margin-top: 1rem;">GitOps 4대 핵심 원칙</h1>
+            <p class="page-subtitle">Git을 단순한 저장소가 아닌 '인프라의 뇌'로 만드는 방법</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 선언적 성능 (Declarative)</h2>
+            <p>모든 시스템의 상태가 '명령어'가 아닌 '상태 정의 파일'로 존재해야 합니다.</p>
+            <div class="info-box cyan">
+                <h3>원칙: 진실의 원천(SSOT)</h3>
+                <p>Git 저장소에 있는 코드가 곧 현재 가동 중인 시스템의 모습과 100% 일치해야 합니다.</p>
+            </div>
+
+            <h2>2. 4가지 원칙 상세</h2>
+            <ul>
+                <li><strong>버전 관리 및 불변성:</strong> 모든 변경 이력은 Git에 남으며 되돌리기가 쉬워야 합니다.</li>
+                <li><strong>자동 당김 (Pull-based Sync):</strong> 클러스터 내부의 에이전트가 Git의 변화를 감시합니다.</li>
+                <li><strong>지속적 조정 (Continuous Reconciliation):</strong> 실제 상태와 원하는 상태가 다르면 즉시 원복합니다.</li>
+                <li><strong>선언적 시스템 상태:</strong> 시스템은 오직 선언된 명세에 의해서만 움직입니다.</li>
+            </ul>
+
+            <div class="info-box yellow">
+                <h3>고비용 실수: Git 직접 수정 금지</h3>
+                <p>운영 환경에 kubectl로 직접 설정값을 바꾸면 GitOps 에이전트가 이를 '구성 드리프트(Drift)'로 간주하고 즉시 Git에 있는 값으로 덮어써버립니다. 모든 수정은 Git PR을 통해서만 이루어져야 합니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <span></span>
+            <a href="gitops_argocd.html" class="btn btn-primary">다음 단계: 2. ArgoCD 실무 패턴 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

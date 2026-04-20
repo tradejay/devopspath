@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차세대 패러다임: Data Mesh - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html" class="active"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html" class="active"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="data.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> 데이터 엔지니어링 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 5</span>
+            <h1 class="page-title" style="margin-top: 1rem;">차세대 패러다임: Data Mesh</h1>
+            <p class="page-subtitle">데이터 플랫폼의 중앙 집중화를 탈피한 도메인 중심 아키텍처</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 중앙 데이터 팀의 한계</h2>
+            <p>기존의 '중앙 데이터 레이크' 모델은 모든 데이터 요청이 한 팀으로 몰려 병목(Bottleneck) 현상이 발생합니다. 데이터 엔지니어는 데이터의 의미를 다 이해하지 못한 채 파이프라인만 만들게 됩니다.</p>
+            <div class="info-box cyan">
+                <h3>Data Mesh: "데이터는 제품이다"</h3>
+                <p>각 비즈니스 도구(도메인) 팀이 자신의 데이터를 직접 소유하고 관리하며, 이를 다른 팀이 쉽게 쓸 수 있도록 '제품(Data Product)'으로서 제공하는 분산화된 방식입니다.</p>
+            </div>
+
+            <h2>2. 데이터 메쉬의 4대 원칙</h2>
+            <ol>
+                <li><strong>도메인 중심의 소유권:</strong> 각 팀이 자기 영역의 데이터를 책임짐.</li>
+                <li><strong>제품으로서의 데이터:</strong> 데이터를 남이 쓰기 편한 형태로(API, 테이블) 제공.</li>
+                <li><strong>자가 서비스 데이터 플랫폼:</strong> 공통 인프라 팀은 각 팀이 데이터를 쉽게 처리할 수 있는 도구만 제공.</li>
+                <li><strong>연합형 거버넌스:</strong> 상호 통신이 가능하도록 최소한의 전사 표준 규칙 적용.</li>
+            </ol>
+
+            <div class="info-box green">
+                <h3>마치며: 데브옵스에서 데이터까지</h3>
+                <p>데이터 메쉬 아키텍처는 마이크로서비스(MSA)가 애플리케이션의 복잡성을 해결한 방식과 매우 닮아 있습니다. 데브옵스 철학이 데이터 영역으로 확장된 최정점의 기술이라고 할 수 있습니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="data_quality.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="index.html" class="btn btn-primary">과정 완료: 대시보드 홈으로 가기 <i class="fa-solid fa-house"></i></a>
+        </div>
+    </main>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>컨테이너화 - DevOps Roadmap</title>
+    <title>MLOps (AI 인프라 자동화) - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,40 +14,37 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
-            
             <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
-            <li><a href="container.html" class="active"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
-
             <li class="nav-category">심화 과정 (Step 07-13)</li>
             <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
             <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
             <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
             <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
             <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
-            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
             <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div class="detail-header">
-            <span class="badge in-progress">STEP 03</span>
-            <h1 class="page-title" style="margin-top: 1rem;">백엔드 컨테이너화 (Docker)</h1>
-            <p class="page-subtitle" style="margin-bottom: 0;">"내 컴퓨터에서는 되는데?" 문제를 해결하고 Scale-out이 안되는 환경에서 탈피하기.</p>
+            <span class="badge progress">STEP 12</span>
+            <h1 class="page-title" style="margin-top: 1rem;">MLOps (Machine Learning Ops)</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">AI 모델의 개발, 배포, 운영을 자동화하여 '지속 가능한 AI 서비스' 구축하기.</p>
         </div>
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-            <!-- Main Details -->
-            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-blue);">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-box-open"></i> 컨테이너 설계 원칙 (Pro's Review)</h2>
+            <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-purple);">
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-brain"></i> 왜 MLOps가 필요한가?</h2>
                 <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
-                    <p>컨테이너는 단순히 '가벼운 가상머신'이 아닙니다. 이 장에서는 **"내 컴퓨터에서는 되는데 서버에서는 안 돼요"**라는 문제를 영구히 해결하는 **불변(Immutable) 인프라**의 핵심인 Docker를 깊게 다룹니다.</p>
-                    <p style="margin-top: 1rem;">성공적인 컨테이너화는 이미지를 얼마나 작고 안전하게 만드느냐, 그리고 컨테이너 간의 네트워크와 데이터를 얼마나 정교하게 설계하느냐에 달려 있습니다. 단순히 실행하는 법을 넘어, 운영 레벨의 컨테이너 설계 능력을 배양합니다.</p>
+                    <p>전통적인 소프트웨어와 달리 AI 서비스는 **코드 + 데이터 + 모델**이라는 세 가지 요소가 얽혀 있습니다. 모델은 시간이 지나면 성능이 떨어지며(Drift), 데이터를 재학습시키고 다시 배포하는 과정이 반복되어야 합니다.</p>
+                    <p style="margin-top: 1rem;">MLOps는 모델 학습부터 서빙, 모니터링까지의 전 과정을 자동화하여 데이터 과학자와 엔지니어 사이의 장벽을 허물고 프로덕션급 AI 인프라를 제공합니다.</p>
                 </div>
             </div>
 
@@ -57,58 +54,57 @@
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="cont_foundations.html" style="color: inherit; text-decoration: none;">1. Foundations: VM vs Container</a></h4>
-                            <p>가상머신과 컨테이너의 구조적 차이와 Docker 엔진의 핵심 아키텍처를 이해합니다.</p>
+                            <h4><a href="mlops_lifecycle.html" style="color: inherit; text-decoration: none;">1. ML 라이프사이클과 DevOps</a></h4>
+                            <p>전통적인 DevOps와 MLOps의 차이점, 그리고 CT(Continuous Training)의 개념을 이해합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="cont_images.html" style="color: inherit; text-decoration: none;">2. Images & Layers: 빌드 최적화</a></h4>
-                            <p>Layer 구조의 원리를 배우고 Multi-stage 빌드를 통해 이미지 크기를 최소화하는 전략을 익힙니다.</p>
+                            <h4><a href="mlops_data_versioning.html" style="color: inherit; text-decoration: none;">2. 데이터 & 모델 버전 관리 (DVC)</a></h4>
+                            <p>Git으로는 관리하기 힘든 대용량 데이터와 바이너리 모델 파일을 버전 관리하는 기법을 배웁니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="cont_networking.html" style="color: inherit; text-decoration: none;">3. Networking: 컨테이너 간 통신</a></h4>
-                            <p>Bridge, Host, Overlay 등 다양한 가상 네트워크 드라이버를 이해하고 격리된 통신 환경을 구축합니다.</p>
+                            <h4><a href="mlops_tracking.html" style="color: inherit; text-decoration: none;">3. 실험 추적 (MLflow)</a></h4>
+                            <p>수많은 하이퍼파라미터 실험 결과와 메트릭을 기록하고 최적의 모델을 선정하는 자동화 저장소를 구축합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="cont_storage.html" style="color: inherit; text-decoration: none;">4. Storage & Persistence: 데이터 관리</a></h4>
-                            <p>컨테이너가 사라져도 데이터는 남아야 합니다. Volume과 Bind Mount의 차이를 배우고 데이터를 안전하게 보존합니다.</p>
+                            <h4><a href="mlops_serving.html" style="color: inherit; text-decoration: none;">4. 모델 서빙 & 파이프라인 (Kubeflow)</a></h4>
+                            <p>학습된 모델을 API 형태로 배포하고, 데이터 전처리부터 학습까지의 파이프라인을 오케스트레이션합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="cont_compose.html" style="color: inherit; text-decoration: none;">5. Multi-Container: Docker Compose</a></h4>
-                            <p>복잡한 마이크로서비스 앱을 한 줄의 명령어로 오케스트레이션하는 Compose 패턴을 실습합니다.</p>
+                            <h4><a href="mlops_monitoring.html" style="color: inherit; text-decoration: none;">5. 모델 모니터링 & 드리프트 감지</a></h4>
+                            <p>실제 운영 환경에서 모델의 예측 성능이 떨어지는지 감지하고, 자동으로 재학습을 트리거하는 체계를 설계합니다.</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Side Refs -->
             <div class="glass-card">
                 <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
                 <div class="tech-grid" style="margin-bottom: 2rem;">
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">Docker Compose</span>
-                    <span class="tech-tag">AWS EC2/ECS</span>
-                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">MLflow</span>
+                    <span class="tech-tag">Kubeflow</span>
+                    <span class="tech-tag">DVC</span>
+                    <span class="tech-tag">BentoML</span>
                 </div>
 
                 <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
                 <div class="resource-list">
-                    <a href="https://docs.docker.com/get-started/" target="_blank" class="resource-item">
-                        <i class="fa-brands fa-docker" style="font-size: 1.5rem;"></i>
+                    <a href="https://ml-ops.org/" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-microchip" style="font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="display:block; font-size: 0.9rem;">Docker 시작하기</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">공식 Getting Started</span>
+                            <strong style="display:block; font-size: 0.9rem;">MLOps 가이드라인</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">핵심 철학 및 사례 연구</span>
                         </div>
                     </a>
                 </div>

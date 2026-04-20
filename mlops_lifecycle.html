@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML 라이프사이클과 DevOps - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="mlops.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> MLOps 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 1</span>
+            <h1 class="page-title" style="margin-top: 1rem;">ML 라이프사이클과 DevOps</h1>
+            <p class="page-subtitle">데이터가 주도하는 소프트웨어 개발의 새로운 흐름</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. MLOps vs DevOps</h2>
+            <p>전통적인 소프트웨어 제품과 기계 학습 모델 중심의 제품은 수명 주기부터 다릅니다.</p>
+            <ul>
+                <li><strong>DevOps:</strong> 코드의 변경이 배포를 트리거함. (CI/CD)</li>
+                <li><strong>MLOps:</strong> 코드 변경뿐만 아니라 데이터의 변경도 배포를 트리거함. (CI/CD/CT)</li>
+            </ul>
+
+            <div class="info-box cyan">
+                <h3>CT (Continuous Training)</h3>
+                <p>지속적 학습(CT)은 MLOps만의 고유한 개념입니다. 새로운 데이터가 수집되면 파이프라인이 자동으로 돌아가 모델을 재학습시키고 검증합니다.</p>
+            </div>
+
+            <h2>2. 3가지 자동화 레벨 (Google 기준)</h2>
+            <ol>
+                <li><strong>Level 0:</strong> 수동 프로세스. 데이터 추출, 학습, 모델 서빙이 모두 분절됨.</li>
+                <li><strong>Level 1:</strong> ML 파이프라인 자동화. 새로운 데이터를 바탕으로 모델을 자동 학습함.</li>
+                <li><strong>Level 2:</strong> CI/CD 파이프라인 자동화. 실험 단계에서 운영 단계로 가는 과정 자체가 자동화됨.</li>
+            </ol>
+
+            <div class="info-box green">
+                <h3>핵심 가치: 재현성 (Reproducibility)</h3>
+                <p>동일한 코드와 동일한 데이터가 주어졌을 때, 언제 어디서든 동일한 성능의 모델이 만들어질 수 있도록 인프라를 설계해야 합니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <span></span>
+            <a href="mlops_data_versioning.html" class="btn btn-primary">다음 단계: 2. 데이터 & 모델 버전 관리 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

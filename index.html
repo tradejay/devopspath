@@ -14,12 +14,23 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
             <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
         </ul>
     </nav>
 
@@ -112,6 +123,121 @@
                 </div>
             </a>
         </div>
+
+        <h2 class="page-title" style="font-size: 2rem; margin-top: 4rem; margin-bottom: 2rem; border-left: 5px solid var(--accent-purple); padding-left: 1.5rem;">
+            Advanced DevOps Path
+        </h2>
+        <p class="page-subtitle">대규모 트래픽과 기업형 인프라 운영을 위한 최상위 엔지니어링 커리큘럼</p>
+
+        <div class="grid-container">
+            <!-- Step 07 -->
+            <a href="k8s.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">07. Kubernetes</h2>
+                        <i class="fa-solid fa-server card-icon"></i>
+                    </div>
+                    <p class="card-desc">컨테이너 오케스트레이션의 표준. 무중단 배포와 리소스 최적화의 핵심.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">K8s</span>
+                        <span class="tech-tag">Helm</span>
+                        <span class="tech-tag">ArgoCD</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Step 08 -->
+            <a href="gitops.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">08. GitOps & 플랫폼</h2>
+                        <i class="fa-solid fa-sync card-icon"></i>
+                    </div>
+                    <p class="card-desc">Git을 통한 인프라 운영 자동화와 개발자 자가 서비스 플랫폼(IDP) 구축.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">GitOps</span>
+                        <span class="tech-tag">Backstage</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Step 09 -->
+            <a href="mesh.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">09. 서비스 메쉬</h2>
+                        <i class="fa-solid fa-network-wired card-icon"></i>
+                    </div>
+                    <p class="card-desc">MSA 환경에서의 서비스 간 통신 보안, 트래픽 제어 및 가시성 확보.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">Istio</span>
+                        <span class="tech-tag">Envoy</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Step 10 -->
+            <a href="finops.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">10. FinOps (비용)</h2>
+                        <i class="fa-solid fa-coins card-icon"></i>
+                    </div>
+                    <p class="card-desc">클라우드 비용을 데이터 기반으로 측정하고 최적화하는 엔지니어링 전략.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">AWS Cost</span>
+                        <span class="tech-tag">Karpenter</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Step 11 -->
+            <a href="sre.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">11. SRE & 카오스</h2>
+                        <i class="fa-solid fa-heart-pulse card-icon"></i>
+                    </div>
+                    <p class="card-desc">신뢰성 공학(SLO/SLI)과 고의적 장애 실험을 통한 시스템 복원력 강화.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">Chaos Mesh</span>
+                        <span class="tech-tag">SLO</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Step 12 -->
+            <a href="mlops.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">12. MLOps (AI)</h2>
+                        <i class="fa-solid fa-brain card-icon"></i>
+                    </div>
+                    <p class="card-desc">머신러닝 모델의 라이프사이커(학습, 배포, 모니터링) 자동화 시스템.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">MLflow</span>
+                        <span class="tech-tag">Kubeflow</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Step 13 -->
+            <a href="data.html" style="text-decoration: none; color: inherit;">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <h2 class="card-title">13. 데이터 엔지니어링</h2>
+                        <i class="fa-solid fa-database card-icon"></i>
+                    </div>
+                    <p class="card-desc">대규모 데이터의 수집, 가공, 적재(ELT/ETL) 파이프라인 자동화.</p>
+                    <div class="tech-grid">
+                        <span class="tech-tag">Airflow</span>
+                        <span class="tech-tag">dbt</span>
+                        <span class="tech-tag">Kafka</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
         <p style="margin-top: 4rem; color: var(--text-secondary); font-size: 0.8rem; text-align: center;">
             Last Updated: 2026-04-20 | Vercel Auto-deploy Test
         </p>

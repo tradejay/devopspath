@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자동 복구 & 스케일링 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html" class="active"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="k8s.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> Kubernetes 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 4</span>
+            <h1 class="page-title" style="margin-top: 1rem;">자동 복구 & 스케일링</h1>
+            <p class="page-subtitle">Probe를 이용한 자기 치유 환경과 트래픽 기반 자동화</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. Liveness vs Readiness Probe</h2>
+            <p>포드가 살아있는지(Liveness), 그리고 요청을 받을 준비가 되었는지(Readiness)를 구분하여 체크해야 합니다.</p>
+            <div class="info-box cyan">
+                <h3>자기 치유(Self-Healing)</h3>
+                <p>Liveness Probe가 실패하면 K8s는 해당 컨테이너를 즉시 재시작합니다. 애플리케이션 코드가 데드락에 빠져도 시스템이 스스로 복구합니다.</p>
+            </div>
+
+            <h2>2. HPA (Horizontal Pod Autoscaler)</h2>
+            <p>트래픽이 몰리면 CPU/메모리 사용량을 감지하여 자동으로 포드의 개수를 늘려줍니다.</p>
+            <div class="code-block">
+                <pre><code>apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70</code></pre>
+            </div>
+
+            <div class="info-box green">
+                <h3>실전 체크포인트</h3>
+                <ul>
+                    <li>Startup Probe: 서비스 부팅 시간이 길 때 초기 재시작 방지.</li>
+                    <li>Resource Limits: HPA가 동작하려면 반드시 CPU Limit이 설정되어야 함.</li>
+                    <li>Graceful Shutdown: 종료 시 진행 중인 요청을 안전하게 처리할 시간을 확보해야 함.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="k8s_networking.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="k8s_cicd.html" class="btn btn-primary">다음 단계: 5. K8s 위에서의 CI/CD <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

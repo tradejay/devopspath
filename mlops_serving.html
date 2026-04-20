@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모델 서빙 & 파이프라인 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html" class="active"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="mlops.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> MLOps 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 4</span>
+            <h1 class="page-title" style="margin-top: 1rem;">모델 서빙 & 파이프라인</h1>
+            <p class="page-subtitle">학습된 모델을 실제 서비스에 연결하는 고성능 배포 아키텍처</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 모델 서빙 (Serving) 방식</h2>
+            <p>배포된 모델이 어떻게 요청을 처리할 것인가에 따라 두 가지로 나뉩니다.</p>
+            <ul>
+                <li><strong>Online Serving:</strong> 실시간 REST/gRPC API로 요청에 즉각 응답. (예: 추천 시스템)</li>
+                <li><strong>Batch Serving:</strong> 수백만 건의 데이터를 미리 계산하여 데이터베이스에 저장. (예: 대량 뉴스 분류)</li>
+            </ul>
+
+            <div class="info-box cyan">
+                <h3>Kubeflow Pipelines</h3>
+                <p>ML 워크플로우를 구성하는 여러 단계(데이터 정제 -> 학습 -> 검증 -> 서빙)를 하나의 파이프라인으로 엮어서 관리합니다. 각 단계는 독립적인 컨테이너로 실행되어 확장성이 뛰어납니다.</p>
+            </div>
+
+            <h2>2. 고성능 서빙 프레임워크</h2>
+            <ul>
+                <li><strong>BentoML:</strong> 파이썬 모델을 쉽고 빠르게 프로덕션급 API 서버로 패키징.</li>
+                <li><strong>Triton Inference Server:</strong> GPU 활용을 극대화하여 초당 처리량을 높이는 엔비디아의 솔루션.</li>
+                <li><strong>Seldon Core:</strong> K8s 환경에서 고급 배포 전략(Canary, AB Test)을 지원하는 ML 서빙 엔진.</li>
+            </ul>
+
+            <div class="info-box green">
+                <h3>실전 체크포인트: 인프라 오토스케일링</h3>
+                <p>ML 서빙은 CPU/GPU 소모가 매우 큽니다. 요청이 없을 때는 노드를 0으로 줄이고(Serverless), 트래픽이 몰릴 때만 급격히 늘리는 최적화가 필수적입니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="mlops_tracking.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="mlops_monitoring.html" class="btn btn-primary">다음 단계: 5. 모델 모니터링 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장애 대응 & 사후 리뷰 - DevOps Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-rocket"></i> DevOps Path
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> 대시보드 홈</a></li>
+            <li class="nav-category">기초 과정 (Step 01-06)</li>
+            <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
+            <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
+            <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
+            <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
+            <li class="nav-category">심화 과정 (Step 07-13)</li>
+            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
+            <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
+            <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
+            <li><a href="sre.html" class="active"><i class="fa-solid fa-heart-pulse"></i> 11. SRE & 카오스</a></li>
+            <li><a href="mlops.html"><i class="fa-solid fa-brain"></i> 12. MLOps (AI)</a></li>
+            <li><a href="data.html"><i class="fa-solid fa-database"></i> 13. 데이터 엔지니어링</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="detail-header">
+            <a href="sre.html" style="text-decoration: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem; display: block;">
+                <i class="fa-solid fa-arrow-left"></i> SRE 목록으로 돌아가기
+            </a>
+            <span class="badge progress">Deep Dive 3</span>
+            <h1 class="page-title" style="margin-top: 1rem;">장애 대응 & 사후 리뷰</h1>
+            <p class="page-subtitle">시스템이 무너졌을 때 당황하지 않고 복구하며 성장하는 법</p>
+        </div>
+
+        <section class="content-section">
+            <h2>1. 장애 지휘 구조 (Incident Command)</h2>
+            <p>장애가 발생하면 즉시 지휘 체계를 갖추어야 합니다. 모두가 달려드는 것이 아니라 역할을 나눕니다.</p>
+            <ul>
+                <li><strong>Incident Commander (IC):</strong> 전체 진두지휘. (코딩을 하지 않습니다!)</li>
+                <li><strong>Operations Lead:</strong> 실제 명령 수행 및 복구 작업.</li>
+                <li><strong>Communications Lead:</strong> 고객사, 사내 유관 부서와의 소통 담당.</li>
+            </ul>
+
+            <h2>2. 비난 없는 사후 리뷰 (Blameless Post-mortem)</h2>
+            <div class="info-box cyan">
+                <h3>원칙: 범인이 아니라 원인을 찾으세요</h3>
+                <p>"누가 실수했나"가 아니라 "시스템이 왜 그 실수를 허용했는가"를 분석해야 합니다. 사람이 실수를 할 수밖에 없는 구조라면 시스템을 고쳐야 합니다.</p>
+            </div>
+
+            <h2>3. 포스트모템 필수 항목</h2>
+            <ol>
+                <li><strong>Impact:</strong> 사용자에게 어떤 고통을 주었는가? (시간, 범위)</li>
+                <li><strong>Timeline:</strong> 발생부터 탐지, 복구까지의 타임라인.</li>
+                <li><strong>Root Cause:</strong> 5-Whys 기법을 통한 근본 원인 도출.</li>
+                <li><strong>Action Items:</strong> 재발 방지를 위한 구체적인 할 일 리스트.</li>
+            </ol>
+
+            <div class="info-box green">
+                <h3>성공적인 사후 리뷰 팁</h3>
+                <p>작성된 포스트모템은 전사 엔지니어에게 공유되어야 합니다. 다른 팀의 장애 이력이 우리 팀의 장애를 예방하는 가장 좋은 교재이기 때문입니다.</p>
+            </div>
+        </section>
+
+        <div style="margin-top: 4rem; display: flex; justify-content: space-between;">
+            <a href="sre_error_budget.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> 이전 단계</a>
+            <a href="sre_oncall.html" class="btn btn-primary">다음 단계: 4. 온콜 & 토일 관리 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+</body>
+</html>

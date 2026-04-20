@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모니터링 & 로깅 - DevOps Roadmap</title>
+    <title>Kubernetes 오케스트레이션 - DevOps Roadmap</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -17,14 +17,14 @@
             
             <li class="nav-category">기초 과정 (Step 01-06)</li>
             <li><a href="cicd.html"><i class="fa-solid fa-code-branch"></i> 1. CI/CD 자동화</a></li>
-            <li><a href="observability.html" class="active"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
+            <li><a href="observability.html"><i class="fa-solid fa-chart-line"></i> 2. 모니터링 & 로깅</a></li>
             <li><a href="container.html"><i class="fa-solid fa-box"></i> 3. 컨테이너화 (Docker)</a></li>
             <li><a href="iac.html"><i class="fa-solid fa-cubes"></i> 4. 코드형 인프라 (IaC)</a></li>
             <li><a href="automation.html"><i class="fa-solid fa-robot"></i> 5. 블로그 자동화</a></li>
             <li><a href="security.html"><i class="fa-solid fa-shield-halved"></i> 6. 보안 & 환경 분리</a></li>
 
             <li class="nav-category">심화 과정 (Step 07-13)</li>
-            <li><a href="k8s.html"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
+            <li><a href="k8s.html" class="active"><i class="fa-solid fa-server"></i> 7. Kubernetes</a></li>
             <li><a href="gitops.html"><i class="fa-solid fa-sync"></i> 8. GitOps & 플랫폼</a></li>
             <li><a href="mesh.html"><i class="fa-solid fa-network-wired"></i> 9. 서비스 메쉬</a></li>
             <li><a href="finops.html"><i class="fa-solid fa-coins"></i> 10. FinOps (비용)</a></li>
@@ -36,18 +36,17 @@
 
     <main class="main-content">
         <div class="detail-header">
-            <span class="badge todo">STEP 02</span>
-            <h1 class="page-title" style="margin-top: 1rem;">모니터링 & 로깅 (Observability)</h1>
-            <p class="page-subtitle" style="margin-bottom: 0;">개발자가 장애를 먼저 파악하고 빠르게 대응할 수 있게 만들어주는 인프라의 눈.</p>
+            <span class="badge progress">STEP 07</span>
+            <h1 class="page-title" style="margin-top: 1rem;">Kubernetes 오케스트레이션</h1>
+            <p class="page-subtitle" style="margin-bottom: 0;">Docker 컨테이너를 "알아서" 죽이고 살리는 자동 운영 시스템 구축하기.</p>
         </div>
 
         <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-            <!-- Main Details -->
             <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 2rem; border-left: 4px solid var(--accent-cyan);">
-                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-eye"></i> 관측 가능성 설계 원칙 (Pro's Review)</h2>
+                <h2 class="card-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-server"></i> 오케스트레이션 설계 원칙</h2>
                 <div class="content-section" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">
-                    <p>전통적인 모니터링이 "시스템이 살았는가 죽었는가?"라는 질문에 답한다면, **관측 가능성(Observability)**은 **"왜 시스템이 이렇게 동작하고 있는가?"**라는 질문에 답하는 능력입니다.</p>
-                    <p style="margin-top: 1rem;">엔지니어링의 정점은 장애를 운 좋게 피하는 것이 아니라, 수만 개의 복잡한 요청 속에서 장애의 근본 원인을 단 몇 분 만에 찾아낼 수 있는 **'투명한 가시성'**을 확보하는 데 있습니다. 이를 위해 3대 기둥(메트릭, 로그, 추적)을 체계적으로 연결하는 법을 배웁니다.</p>
+                    <p>컨테이너가 많아지면 Docker만으로는 장애 복구, 스케일링, 배포 롤링이 불가능해집니다. Kubernetes(K8s)는 프로덕션 컨테이너 운영의 글로벌 표준입니다.</p>
+                    <p style="margin-top: 1rem;">이 장에서는 **"컨테이너는 일회용이다. 죽고 살아나는 것은 시스템이 담당한다"**는 대원칙 아래, 선언형 인프라로 수천 개의 컨테이너를 관리하는 법을 배웁니다.</p>
                 </div>
             </div>
 
@@ -57,58 +56,57 @@
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_fundamentals.html" style="color: inherit; text-decoration: none;">1. Foundations: 관측 가능성 기초</a></h4>
-                            <p>모니터링을 넘어선 관측 가능성(Observability)의 철학과 Metrics, Logs, Traces의 상호작용을 이해합니다.</p>
+                            <h4><a href="k8s_architecture.html" style="color: inherit; text-decoration: none;">1. K8s 아키텍처 기초</a></h4>
+                            <p>Control Plane과 Worker Node, 그리고 Pod/Deployment/Service의 기본 개념을 이해합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_metrics_golden.html" style="color: inherit; text-decoration: none;">2. Telemetry & Metrics: 골든 시그널</a></h4>
-                            <p>SRE의 핵심 지표인 4대 골든 시그널을 수집하고 Prometheus/Grafana로 시각화하는 법을 익힙니다.</p>
+                            <h4><a href="k8s_manifests.html" style="color: inherit; text-decoration: none;">2. 선언형 매니페스트 설계</a></h4>
+                            <p>YAML을 통해 인프라의 상태를 정의하고 관리하는 방법과 kubectl 활용법을 익힙니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_logging_correlation.html" style="color: inherit; text-decoration: none;">3. Logging & Events: 구조화 로깅</a></h4>
-                            <p>JSON 기반의 구조화된 로깅을 도입하고, 로그와 메트릭을 Trace ID로 연결하는 상관관계 분석을 배웁니다.</p>
+                            <h4><a href="k8s_networking.html" style="color: inherit; text-decoration: none;">3. 서비스 디스커버리 & 네트워킹</a></h4>
+                            <p>유동적인 컨테이너 IP 환경에서 서비스 간 통신과 외부 노출을 위한 Ingress 설계를 배웁니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_slo_alerting.html" style="color: inherit; text-decoration: none;">4. Reliability & Alerting: SLO 기반 알림</a></h4>
-                            <p>단순 CPU 수치가 아닌, 사용자 경험(SLO)과 에러 예산을 기반으로 한 지능형 알림 시스템을 설계합니다.</p>
+                            <h4><a href="k8s_scaling.html" style="color: inherit; text-decoration: none;">4. 자동 복구 & 스케일링</a></h4>
+                            <p>Probe를 이용한 헬스체크와 트래픽 기반 자동 확장(HPA)으로 무중단 시스템을 구축합니다.</p>
                         </div>
                     </li>
                     <li>
                         <div class="task-checkbox"></div>
                         <div class="task-content">
-                            <h4><a href="obs_tracing_postmortem.html" style="color: inherit; text-decoration: none;">5. Tracing & Post-mortem: 사후 분석 문화</a></h4>
-                            <p>마이크로서비스 전체 흐름을 추적하는 분산 추적(Tracing)과 생산적인 장애 사후 분석(Post-mortem) 기획을 다룹니다.</p>
+                            <h4><a href="k8s_cicd.html" style="color: inherit; text-decoration: none;">5. K8s 위에서의 CI/CD</a></h4>
+                            <p>Helm 차트와 ArgoCD를 활용하여 Git에 푸시하면 클러스터에 자동 배포되는 GitOps를 구현합니다.</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Side Refs -->
             <div class="glass-card">
                 <h2 class="card-title" style="margin-bottom: 1.5rem;">추천 기술 스택</h2>
                 <div class="tech-grid" style="margin-bottom: 2rem;">
-                    <span class="tech-tag">Sentry</span>
-                    <span class="tech-tag">Datadog</span>
-                    <span class="tech-tag">Prometheus</span>
-                    <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Helm</span>
+                    <span class="tech-tag">kubectl</span>
+                    <span class="tech-tag">ArgoCD</span>
                 </div>
 
                 <h2 class="card-title" style="margin-bottom: 1.5rem; font-size: 1.2rem;">관련 링크</h2>
                 <div class="resource-list">
-                    <a href="https://docs.sentry.io/" target="_blank" class="resource-item">
-                        <i class="fa-solid fa-bug" style="font-size: 1.5rem;"></i>
+                    <a href="https://kubernetes.io/ko/docs/tutorials/" target="_blank" class="resource-item">
+                        <i class="fa-solid fa-book" style="font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="display:block; font-size: 0.9rem;">Sentry 공식 문서</strong>
-                            <span style="font-size: 0.75rem; color: var(--text-secondary);">프론트/백엔드 연동법</span>
+                            <strong style="display:block; font-size: 0.9rem;">K8s 공식 튜토리얼</strong>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">한국어 공식 문서</span>
                         </div>
                     </a>
                 </div>
