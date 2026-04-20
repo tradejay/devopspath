@@ -326,3 +326,87 @@ h1.page-title {
     background: rgba(59, 130, 246, 0.1);
     border-color: rgba(59, 130, 246, 0.3);
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 0px;
+    }
+
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        backdrop-filter: blur(20px);
+    }
+
+    .logo {
+        margin-bottom: 1.5rem;
+        justify-content: center;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.5rem;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-links a.active {
+        border-left: none;
+        border-bottom: 2px solid var(--accent-purple);
+        background: rgba(139, 92, 246, 0.1);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+        width: 100%;
+    }
+
+    h1.page-title {
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr !important;
+    }
+
+    .page-title {
+        font-size: 1.8rem !important;
+    }
+
+    .glass-card {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .task-content h4 {
+        font-size: 0.95rem;
+    }
+}
+
